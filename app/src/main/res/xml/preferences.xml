@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="@string/ble_settings">
+        <ListPreference
+            android:key="scan_mode"
+            android:title="@string/scan_mode"
+            android:entries="@array/scan_mode_entries"
+            android:entryValues="@array/scan_mode_entryValues"
+            android:defaultValue="@string/default_scan_mode"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/judge_line_co2">
+        <EditTextPreference
+            android:key="co2_high_ppm"
+            android:title="@string/co2_high_ppm"
+            android:defaultValue="@integer/default_co2_high_ppm"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/co2_high_judge_dialog"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="co2_low_ppm"
+            android:title="@string/co2_low_ppm"
+            android:defaultValue="@integer/default_co2_low_ppm"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/co2_low_judge_dialog"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/behavior_setting">
+        <ListPreference
+            android:key="app_layout_type"
+            android:title="@string/app_layout_type"
+            android:entries="@array/app_layout_type_entries"
+            android:entryValues="@array/app_layout_type_entryValues"
+            android:defaultValue="@string/default_app_layout_type"
+            app:useSimpleSummaryProvider="true"/>
+        <SwitchPreferenceCompat
+            android:key="runin_background"
+            android:title="@string/runin_background"
+            android:defaultValue="@bool/default_runin_background"/>
+        <EditTextPreference
+            android:key="screen_update_interval"
+            android:title="@string/screen_update_interval"
+            android:defaultValue="@integer/default_screen_update_interval"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/screen_update_interval_dialog"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="motion_off_minutes"
+            android:title="@string/motion_off_minutes"
+            android:defaultValue="@integer/default_motion_off_minutes"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/motion_off_minutes_dialog"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="keep_data_minutes"
+            android:title="@string/keep_data_minutes"
+            android:defaultValue="@integer/default_keep_data_minutes"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/keep_data_minutes_dialog"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+    <!--<PreferenceCategory android:title="@string/graph_setting">
+        <EditTextPreference
+            android:key="graph_scalemarks"
+            android:title="@string/graph_scalemarks"
+            android:defaultValue="@integer/default_graph_scalemarks"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/graph_scalemarks_dialog"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="graph_count_minutes"
+            android:title="@string/graph_count_minutes"
+            android:defaultValue="@integer/default_graph_count_minutes"
+            android:selectAllOnFocus="true"
+            app:useSimpleSummaryProvider="true"
+            android:enabled="false"/>
+    </PreferenceCategory>-->
+    <PreferenceCategory android:title="@string/ims_setting">
+        <MultiSelectListPreference
+            android:entries="@array/pref_log_level_list_title"
+            android:entryValues="@array/pref_log_level_list_values"
+            android:key="@string/pref_log_level_key"
+            android:summary="@string/pref_log_level_summary"
+            android:title="@string/pref_log_level" />
+        <EditTextPreference
+            android:key="send_data_interval"
+            android:title="@string/send_data_interval"
+            android:defaultValue="@integer/default_send_data_interval"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/send_data_interval_dialog"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="unit_id"
+            android:title="@string/unit_id"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/unit_id_dialog"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/debug_setting">
+        <SwitchPreferenceCompat
+            android:key="logging_ble_scan"
+            android:title="@string/logging_ble_scan"
+            android:defaultValue="@bool/default_logging_ble_scan"/>
+        <SwitchPreferenceCompat
+            android:key="draw_unknown_sensor"
+            android:title="@string/draw_unknown_sensor"
+            android:defaultValue="@bool/default_draw_unknown_sensor"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

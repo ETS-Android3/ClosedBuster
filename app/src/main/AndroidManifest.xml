@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="jp.iflink.closed_buster">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name="jp.iflink.closed_buster.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+                android:screenOrientation="unspecified"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- Micro Service -->
+        <service
+            android:name="jp.iflink.closed_buster.iai.ClosedBusterIaiService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <!--<action android:name="jp.co.toshiba.iflink.AndroidService" />-->
+                <action android:name="jp.iflink.closed_buster.ims.ClosedBusterIms" />
+            </intent-filter>
+            <meta-data
+                android:name="serviceName"
+                android:value="ClosedBusterService" />
+            <meta-data
+                android:name="description"
+                android:value="ifLink ClosedBuster Micro Service." />
+        </service>
+
+    </application>
+</manifest>

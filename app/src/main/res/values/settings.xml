@@ -1,0 +1,26 @@
+<resources>
+    <!-- IMS識別子設定 -->
+    <string name="ims_device_name_class" translatable="false">ClosedBuster</string>
+    <string name="ims_device_serial" translatable="false">epa</string>
+    <string name="ims_schema_name" translatable="false">closedbuster</string>>
+    <string name="ims_asset_name" translatable="false">CLOSEDBUSTER_EPA</string>
+    <!-- デフォルト値設定 -->
+    <string name="default_app_layout_type" translatable="false">smp</string><!-- tablet8/tablet10/smp -->
+    <string name="default_scan_mode" translatable="false">0</string>
+    <integer name="default_co2_high_ppm">1500</integer>
+    <integer name="default_co2_low_ppm">1000</integer>
+    <integer name="default_screen_update_interval">10</integer>
+    <integer name="default_send_data_interval">30</integer>
+    <bool name="default_runin_background">true</bool>
+    <integer name="default_graph_count_minutes">60</integer>
+    <integer name="default_graph_scalemarks">3</integer>
+    <!-- デフォルト値設定(sensor data) -->
+    <integer name="default_motion_off_minutes">1</integer>
+    <integer name="default_keep_data_minutes">3</integer>
+    <bool name="default_logging_ble_scan">false</bool>
+    <bool name="default_draw_unknown_sensor">false</bool>
+    <!-- IBIパケット設定 -->
+    <integer name="ibi_company_code_iflink">0x09AF</integer>
+    <integer name="ibi_member_id_nicera">0x0037</integer>
+    <integer name="ibi_module_id_co2">0x0001</integer>
+</resources>

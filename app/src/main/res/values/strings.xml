@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">Closed Buster</string>
+    <!-- メニュー -->
+    <string name="menu_setting">Settings</string>
+    <string name="setting_activity">ClosedBuster IMS Settings</string>
+    <!-- メイン画面 -->
+    <string name="recordtime">Updated</string>
+    <string name="description_header">Monitor the CO2 concentration and prevent \"CLOSING\"</string>
+    <string name="description_header1">Monitor the CO2 concentration</string>
+    <string name="description_header2">and prevent \"CLOSING\"</string>
+    <string name="description_footer">Monitoring by sensor (Sensing every 5 seconds)</string>
+    <string name="co2concentration">CO2</string>
+    <string name="co2_unit">ppm</string>
+    <string name="co2rank_low">Low</string>
+    <string name="co2rank_middle">Middle</string>
+    <string name="co2rank_high">High</string>
+    <string name="co2rank_text_low">L: ～{0}ppm</string>
+    <string name="co2rank_text_middle">M: {0}ppm～{1}ppm</string>
+    <string name="co2rank_text_high">H: {0}ppm～</string>
+    <string name="temperature_text">{0}°C</string>
+    <string name="humidity_text">{0}%</string>
+    <string name="barometer_text">{0}hPa</string>
+    <string name="graph_min_text">{0}min ago</string>
+    <!-- 設定画面 -->
+    <string name="ble_settings">--- BLE Setting ---</string>
+    <string name="scan_mode">Scan Mode</string>
+    <string-array name="scan_mode_entries">
+        <item>Low power : scans for 0.5 sec and pauses 4.5 sec</item>
+        <item>Balanced : scans for 2 sec and pauses 3 seconds</item>
+        <item>Low latency : scans continuously</item>
+    </string-array>
+    <string-array name="scan_mode_entryValues" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <string name="judge_line_co2">--- Judgment criteria of CO2 concentration --- </string>
+    <string name="co2_high_ppm">criteria of High [ppm]</string>
+    <string name="co2_low_ppm">criteria of Low [ppm]</string>
+    <string name="co2_high_judge_dialog">Judged by a value [ppm] above the specified</string>
+    <string name="co2_low_judge_dialog">Judged by a value [ppm] less than the specified</string>
+    <string name="behavior_setting">--- Behavior Setting ---</string>
+    <string name="app_layout_type">Layout Mode</string>
+    <string-array name="app_layout_type_entries">
+        <item>Smartphone</item>
+        <item>10 inch Tablet</item>
+        <item>8 inch Tablet</item>
+    </string-array>
+    <string-array name="app_layout_type_entryValues" translatable="false">
+        <item>smp</item>
+        <item>tablet10</item>
+        <item>tablet8</item>
+    </string-array>
+    <string name="screen_update_interval">Screen update Interval [sec]</string>
+    <string name="screen_update_interval_dialog">Interval to update the screen drawing</string>
+    <string name="runin_background">Run in background</string>
+    <string name="graph_setting">--- Graph Setting ---</string>
+    <string name="graph_scalemarks">Num of Scale Marks *TBI</string>
+    <string name="graph_scalemarks_dialog">Number of Scale Marks to be drawn on Y-Axis</string>
+    <string name="graph_count_minutes">Term of drawing [Minutes] *TBI</string>
+    <string name="ims_setting">--- ifLink Setting ---</string>
+    <string name="pref_log_level">Log output target</string>
+    <string name="pref_log_level_key" translatable="false">loglevel</string>
+    <string name="pref_log_level_summary">Select log items</string>
+    <string-array name="pref_log_level_list_title">
+        <item>ifLink I/F Device log</item>
+        <item>ifLink I/F IMS log</item>
+        <item>IMS Device log</item>
+        <item>IMS Service log</item>
+    </string-array>
+    <string-array name="pref_log_level_list_values" translatable="false">
+        <item>DEVICE-CONNECTOR</item>
+        <item>IFLINK-CONNECTOR</item>
+        <item>CUSTOM-DEV</item>
+        <item>CUSTOM-IMS</item>
+    </string-array>
+    <string name="send_data_interval">Send Data Interval [sec]</string>
+    <string name="send_data_interval_dialog">Interval for send data to ifLink</string>
+    <string name="motion_off_minutes">Time to judge as Motion Off [Minutes]</string>
+    <string name="motion_off_minutes_dialog">Judge when continuously received Motion OFF for the specified time</string>
+    <string name="keep_data_minutes">Time to judge as Sensor Off [Minutes]</string>
+    <string name="keep_data_minutes_dialog">Judge when no sensor data received for the specified time</string>
+    <string name="unit_id">Terminal ID</string>
+    <string name="unit_id_dialog">an ID for terminal identification</string>
+    <string name="debug_setting">--- For Debugging ---</string>
+    <string name="logging_ble_scan">Output scan log</string>
+    <string name="logging_application">Output application log</string>
+    <string name="draw_unknown_sensor">Draw unknown sensor</string>
+    <!-- メッセージ -->
+    <string name="data_load_fail">Failed to load data.</string>
+    <string name="data_save_fail">Failed to save data.</string>
+    <!-- Fragment Label -->
+    <string name="home_fragment_label">Home</string>
+    <string name="setting_fragment_label">Setting</string>>
+</resources>

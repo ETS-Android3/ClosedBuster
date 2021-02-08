@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Closed Buster</string>
+    <!-- メニュー -->
+    <string name="menu_setting">設定</string>
+    <string name="setting_activity">ClosedBuster IMS設定メニュー</string>
+    <!-- メイン画面 -->
+    <string name="recordtime">更新時刻</string>
+    <string name="description_header">CO2濃度を監視して「密閉」を防止しています</string>
+    <string name="description_header1">CO2濃度を監視して</string>
+    <string name="description_header2">「密閉」を防止しています</string>
+    <string name="description_footer">センサー別モニタリング（5秒ごとにセンシングしています）</string>
+    <string name="co2concentration">CO2濃度</string>
+    <string name="co2_unit">ppm</string>
+    <string name="co2rank_low">低</string>
+    <string name="co2rank_middle">中</string>
+    <string name="co2rank_high">高</string>
+    <string name="co2rank_text_low">低：～{0}ppm</string>
+    <string name="co2rank_text_middle">中：{0}ppm～{1}ppm</string>
+    <string name="co2rank_text_high">高：{0}ppm～</string>
+    <string name="temperature_text">{0}℃</string>
+    <string name="humidity_text">{0}％</string>
+    <string name="barometer_text">{0}hPa</string>
+    <string name="graph_min_text">{0}分前</string>
+    <!-- 設定画面 -->
+    <string name="ble_settings">●BLE設定</string>
+    <string name="scan_mode">スキャンモード</string>
+    <string-array name="scan_mode_entries">
+        <item>Low power : 0.5秒スキャン→4.5秒待つを繰り返し</item>
+        <item>Balanced : 2秒スキャン→3秒待つを繰り返し</item>
+        <item>Low latency : ずっとスキャンします</item>
+    </string-array>
+    <string name="judge_line_co2">●CO2濃度の判定基準</string>
+    <string name="co2_high_ppm">高の基準 [ppm]</string>
+    <string name="co2_low_ppm">低の基準 [ppm]</string>
+    <string name="co2_high_judge_dialog">指定した[ppm]以上で判定</string>
+    <string name="co2_low_judge_dialog">指定した[ppm]未満で判定</string>
+    <string name="behavior_setting">●動作設定</string>
+    <string name="app_layout_type">レイアウトモード</string>
+    <string-array name="app_layout_type_entries">
+        <item>スマートフォン</item>
+        <item>10インチタブレット</item>
+        <item>8インチタブレット</item>
+    </string-array>
+    <string-array name="app_layout_type_entryValues" translatable="false">
+        <item>smp</item>
+        <item>tablet10</item>
+        <item>tablet8</item>
+    </string-array>
+    <string name="screen_update_interval">描画更新間隔 [秒]</string>
+    <string name="screen_update_interval_dialog">画面の描画を更新する間隔</string>
+    <string name="motion_off_minutes">人感OFF判定時間 [分]</string>
+    <string name="motion_off_minutes_dialog">人感OFFを指定した時間継続して受信した時に判定</string>
+    <string name="keep_data_minutes">センサーOFF判定時間 [分]</string>
+    <string name="keep_data_minutes_dialog">指定した時間センサーデータを受信しなかった時に判定</string>
+    <string name="runin_background">バックグラウンドで動作</string>
+    <string name="graph_setting">●グラフ設定</string>
+    <string name="graph_scalemarks">目盛線の数 ※対応中</string>
+    <string name="graph_scalemarks_dialog">Y軸に描画される目盛線の数</string>
+    <string name="graph_count_minutes">描画期間[分] ※対応中</string>
+    <string name="ims_setting">●IfLink設定</string>
+    <string name="pref_log_level">ログ出力対象</string>
+    <string name="pref_log_level_key" translatable="false">loglevel</string>
+    <string name="pref_log_level_summary">ログ出力対象を選択します。</string>
+    <string-array name="pref_log_level_list_title">
+        <item>ifLink I/F デバイスログ</item>
+        <item>ifLink I/F IMSログ</item>
+        <item>IMS デバイスログ</item>
+        <item>IMS サービスログ</item>
+    </string-array>
+    <string name="send_data_interval">データ送信間隔 [秒]</string>
+    <string name="send_data_interval_dialog">ifLinkへデータを送信する間隔</string>
+    <string name="unit_id">端末識別用ID</string>
+    <string name="unit_id_dialog">端末識別するためのID</string>
+    <string name="debug_setting">●デバッグ用</string>
+    <string name="logging_ble_scan">スキャンログを残す</string>
+    <string name="logging_application">アプリケーションのログを残す</string>
+    <string name="draw_unknown_sensor">未定義のセンサーも描画</string>
+    <!-- メッセージ -->
+    <string name="data_load_fail">データの読み込みに失敗しました</string>
+    <string name="data_save_fail">データの保存に失敗しました</string>
+    <!-- Fragment Label -->
+    <string name="home_fragment_label">Home</string>
+    <string name="setting_fragment_label">Setting</string>
+</resources>

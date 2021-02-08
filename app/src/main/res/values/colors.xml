@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="topbar">#DBDBDB</color>
+    <color name="horizontalBar">#A9A9A9</color>
+    <color name="message">#707070</color>
+
+    <color name="darkgray">#525252</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- センサー状態閾値 -->
+    <color name="corners_lowLabel">#50ADB5</color>
+    <color name="corners_middleLabel">#E27829</color>
+    <color name="corners_highLabel">#DE355E</color>
+    <color name="corners_noMotion">#A9A9A9</color>
+    <color name="corners_noSensor">#A9A9A9</color>
+    <color name="corners_bottom">#F0F6F7</color>
+
+</resources>

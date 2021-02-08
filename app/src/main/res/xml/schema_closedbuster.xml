@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schema name="closedbuster">
+    <property name="devicename" type="string" />
+    <property name="deviceserial" type="string" />
+    <property name="timestamp"  type="timestamp" />
+    <!-- デバイス固有設定 Start -->
+    <property name="unit_id" type="string" />
+    <property name="bd_address" type="string" />
+    <property name="co2" type="int" />
+    <property name="temperature" type="int" />
+    <property name="humidity" type="int" />
+    <property name="motion" type="int" />
+    <property name="barometer" type="int" />
+    <!-- デバイス固有設定 End -->
+</schema>
