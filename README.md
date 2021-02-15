@@ -10,18 +10,16 @@ CO2センサーで「密閉」を検知し、通知・換気などを行うア�
 ## Description
 CO2センサーからのIBI(Iflink Beacon Interface)形式のデータをBLEアドバタイズで受信し、CO2濃度を描画します。<br>
 CO2濃度の他にも、気温・湿度・気圧・人感判断（人がいるかの判別）を描画します。<br>
-このアプリは単独でも動作しますが、IAI(Iflink Application Interface)形式でセンサーデータのIntentをBroadcast送信している為、<br>
-ifLinkとIAI-IMSがインストールされている場合、ifLinkへデータ連携する事ができます。<br>
+このアプリは単独でも動作しますが、IAI(Iflink Application Interface)形式でセンサーデータのIntentをBroadcast送信している為、ifLinkとIAI-IMSがインストールされている場合、ifLinkへデータ連携する事ができます。<br>
 ※IAI、IBIの詳細についてはこの後の章を参照<br>
 [デバイスサービスのxmlファイルについてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/master/device-service/device_service_closedbuster.xml)<br>
 
 
 ## Screenshots
-<img src="screenshot/Screenshot_low.png" width="240" alt="Screenshot (Low)"/> 
-<img src="screenshot/Screenshot_middle.png" width="240" alt="Screenshot (Middle)"/> 
-<img src="screenshot/Screenshot_high.png" width="240" alt="Screenshot (High)"/> 
-<img src="screenshot/Screenshot_smp.png" width="120" alt="Screenshot (Smartphone)"/> 
-<img src="screenshot/Screenshot_settings.png" width="120" alt="Screenshot (Settings)"/>
+<img src="screenshot/Screenshot_low.png" width="640" alt="Screenshot (Low)"/> 
+<img src="screenshot/Screenshot_middle.png" width="640" alt="Screenshot (Middle)"/> 
+<img src="screenshot/Screenshot_high.png" width="640" alt="Screenshot (High)"/> 
+<img src="screenshot/Screenshot_smp.png" width="360" alt="Screenshot (Smartphone)"/> <img src="screenshot/Screenshot_settings.png" width="400" alt="Screenshot (Settings)"/>
 
 
 ## Requirement
@@ -39,11 +37,10 @@ Gradleビルドシステムを使用しています。
 
 ## About CO2 Sensor
 CO2センサーは、日本セラミック社からifLinkオープンコミュニティ向けに提供されたものを使用しています。<br>
-CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計測してデータ送信しています。
+CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計測してデータ送信しています。<br>
 （人感判断は、赤外線センサーを使って動くものを検出するという機能です）<br>
 5秒間センシング＋5秒間データ送信を繰り返し続ける仕様となっている為、画面にその旨を記載しています。<br>
 このセンサーの入手については、以下からお問い合わせください。<br>
-https://www.nicera.co.jp/inquiry/gas-sensor<br>
 
 
 ## Usage
@@ -51,7 +48,8 @@ https://www.nicera.co.jp/inquiry/gas-sensor<br>
 [sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/master/SampleSettings/sensors.xml)<br>
 内部ストレージの以下の場所にsensors.xmlを作成し、配置してください。<br>
 /Android/data/jp.iflink.closed_buster/files<br>
-※デバッグ用に未定義のセンサーを描画するモードを用意しています。設定画面でONにすることで、１番目のセンサーとしてデータを描画します。<br>
+※デバッグ用に未定義のセンサーを描画するモードを用意しています。<br>
+設定画面でONにすることで、１番目のセンサーとしてデータを描画します。<br>
 描画が不安定ですので、あくまでテスト用途としてご利用ください。<br>
 <br>
 利用時は、BluetoothをONにしてください。<br>
@@ -124,10 +122,38 @@ Android OS 7.0以降に対応しています。
 リクエスト、質問、バグリポートがある場合、GitHubのissue機能を使用して下さい。
 
 
+## Overview
+
+
+## Description
+
+
+## Build
+
+
+## About CO2 Sensor
+
+
+## Usage
+
+
+## About IBI (Iflink Beacon Interface)
+
+
+## About IAI (Iflink Application Interface)
+
+
+## Depends
+
+
+## Sample Application
+
+
+## Community
+
+
 ## License
 [MIT](./LICENSE)
-
-
 
 
 ## Disclaimer
