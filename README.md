@@ -12,24 +12,24 @@ CO2センサーからのIBI(Iflink Beacon Interface)形式のデータをBLEア�
 CO2濃度の他にも、気温・湿度・気圧・人感判断（人がいるかの判別）を描画します。<br>
 このアプリは単独でも動作しますが、IAI(Iflink Application Interface)形式でセンサーデータのIntentをBroadcast送信している為、ifLinkとIAI-IMSがインストールされている場合、ifLinkへデータ連携する事ができます。<br>
 ※IAI、IBIの詳細についてはこの後の章を参照<br>
-[デバイスサービスのxmlファイルについてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/master/device-service/device_service_closedbuster.xml)<br>
+[デバイスサービスのxmlファイルについてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/device-service/device_service_closedbuster.xml)<br>
 
 
 ## Screenshots
 
-### CO2濃度「低」
+#### CO2濃度「低」
 <img src="screenshot/Screenshot_low.png" width="640" alt="Screenshot (CO2:Low)"/> 
 
-### CO2濃度「中」
+#### CO2濃度「中」
 <img src="screenshot/Screenshot_middle.png" width="640" alt="Screenshot (CO2:Middle)"/> 
 
-### CO2濃度「高」
+#### CO2濃度「高」
 <img src="screenshot/Screenshot_high.png" width="640" alt="Screenshot (CO2:High)"/> 
 
-### スマートフォン表示
+#### スマートフォン表示
 <img src="screenshot/Screenshot_smp.png" width="360" alt="Screenshot (Smartphone Layout)"/>
 
-### 設定画面
+#### 設定画面
 <img src="screenshot/Screenshot_settings.png" width="400" alt="Screenshot (Settings Screen)"/>
 
 
@@ -56,7 +56,7 @@ CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計�
 
 ## Usage
 事前にCO2センサーのBDアドレスと名称(room)を設定ファイルsensors.xmlに定義する必要があります。<br>
-[sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/master/SampleSettings/sensors.xml)<br>
+[sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleSettings/sensors.xml)<br>
 内部ストレージの以下の場所にsensors.xmlを作成し、配置してください。<br>
 /Android/data/jp.iflink.closed_buster/files<br>
 > ※デバッグ用に未定義のセンサーを描画するモードを用意しています。<br>
@@ -80,10 +80,10 @@ CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計�
 画面上半分にはCO2濃度が一番高いセンサー値を表示しており、「高」「中」「低」の評価と状態がひと目で判るように表示しています。<br>
 ifLinkと連携するときは、このCO2濃度が一番高いセンサー値情報を送るようにしています。<br>
 なお、「高」「中」のCO2濃度の基準については、厚生労働省と文部科学省から出ている環境衛生基準から定めています。<br>
-【参照】厚生労働省の建築物環境衛生管理基準（1000ppm以下）<br>
-https://www.mhlw.go.jp/bunya/kenkou/seikatsu-eisei10<br>
-【参照】文部科学省の学校環境衛生基準（1500ppm以下）<br>
-https://www.mext.go.jp/a_menu/kenko/hoken/1292482.htm<br>
+> 【参照】厚生労働省の建築物環境衛生管理基準（1000ppm以下）<br>
+> https://www.mhlw.go.jp/bunya/kenkou/seikatsu-eisei10<br>
+> 【参照】文部科学省の学校環境衛生基準（1500ppm以下）<br>
+> https://www.mext.go.jp/a_menu/kenko/hoken/1292482.htm<br>
 これらの基準値は設定画面から変更可能です。<br>
 <br>
 CO2センサーがOFFになってデータが届かない状態が3分続くと、センサー値をクリアして背景色を灰色にします。
@@ -126,7 +126,7 @@ Android OS 7.0以降に対応しています。
 
 ## Sample Application
 ソースコードをビルドしたサンプルアプリケーションを登録しています。<br>
-[SampleApplication/ClosedBuster_v100.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/master/SampleApplication/ClosedBuster_v100.apk)
+[SampleApplication/ClosedBuster_v100.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleApplication/ClosedBuster_v100.apk)
 
 
 ## Community
