@@ -16,10 +16,21 @@ CO2濃度の他にも、気温・湿度・気圧・人感判断（人がいる�
 
 
 ## Screenshots
-<img src="screenshot/Screenshot_low.png" width="640" alt="Screenshot (Low)"/> 
-<img src="screenshot/Screenshot_middle.png" width="640" alt="Screenshot (Middle)"/> 
-<img src="screenshot/Screenshot_high.png" width="640" alt="Screenshot (High)"/> 
-<img src="screenshot/Screenshot_smp.png" width="360" alt="Screenshot (Smartphone)"/> <img src="screenshot/Screenshot_settings.png" width="400" alt="Screenshot (Settings)"/>
+
+### CO2濃度「低」
+<img src="screenshot/Screenshot_low.png" width="640" alt="Screenshot (CO2:Low)"/> 
+
+### CO2濃度「中」
+<img src="screenshot/Screenshot_middle.png" width="640" alt="Screenshot (CO2:Middle)"/> 
+
+### CO2濃度「高」
+<img src="screenshot/Screenshot_high.png" width="640" alt="Screenshot (CO2:High)"/> 
+
+### スマートフォン表示
+<img src="screenshot/Screenshot_smp.png" width="360" alt="Screenshot (Smartphone Layout)"/>
+
+### 設定画面
+<img src="screenshot/Screenshot_settings.png" width="400" alt="Screenshot (Settings Screen)"/>
 
 
 ## Requirement
@@ -48,9 +59,9 @@ CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計�
 [sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/master/SampleSettings/sensors.xml)<br>
 内部ストレージの以下の場所にsensors.xmlを作成し、配置してください。<br>
 /Android/data/jp.iflink.closed_buster/files<br>
-※デバッグ用に未定義のセンサーを描画するモードを用意しています。<br>
-設定画面でONにすることで、１番目のセンサーとしてデータを描画します。<br>
-描画が不安定ですので、あくまでテスト用途としてご利用ください。<br>
+> ※デバッグ用に未定義のセンサーを描画するモードを用意しています。<br>
+> 　設定画面でONにすることで、１番目のセンサーとしてデータを描画します。<br>
+> 　描画が不安定ですので、あくまでテスト用途としてご利用ください。<br>
 <br>
 利用時は、BluetoothをONにしてください。<br>
 アプリを起動している間、CO2センサーからデータを受信して画面に描画すると共に、ifLinkへデータ送信し、グラフデータを5分毎に記録します。<br>
