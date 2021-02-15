@@ -80,10 +80,10 @@ CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計�
 画面上半分にはCO2濃度が一番高いセンサー値を表示しており、「高」「中」「低」の評価と状態がひと目で判るように表示しています。<br>
 ifLinkと連携するときは、このCO2濃度が一番高いセンサー値情報を送るようにしています。<br>
 なお、「高」「中」のCO2濃度の基準については、厚生労働省と文部科学省から出ている環境衛生基準から定めています。<br>
-> 【参照】厚生労働省の建築物環境衛生管理基準（1000ppm以下）<br>
-> https://www.mhlw.go.jp/bunya/kenkou/seikatsu-eisei10<br>
-> 【参照】文部科学省の学校環境衛生基準（1500ppm以下）<br>
-> https://www.mext.go.jp/a_menu/kenko/hoken/1292482.htm<br>
+【参照】厚生労働省の建築物環境衛生管理基準（1000ppm以下）<br>
+https://www.mhlw.go.jp/bunya/kenkou/seikatsu-eisei10<br>
+【参照】文部科学省の学校環境衛生基準（1500ppm以下）<br>
+https://www.mext.go.jp/a_menu/kenko/hoken/1292482.htm<br>
 これらの基準値は設定画面から変更可能です。<br>
 <br>
 CO2センサーがOFFになってデータが届かない状態が3分続くと、センサー値をクリアして背景色を灰色にします。
