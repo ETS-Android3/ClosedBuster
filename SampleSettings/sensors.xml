@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sensors>
+	<sensor id="1">
+		<bdaddress>XX:XX:XX:XX:XX:XX</bdaddress>
+		<room>部屋1</room>
+	</sensor>
+	<sensor id="2">
+		<bdaddress>XX:XX:XX:XX:XX:XX</bdaddress>
+		<room>部屋2</room>
+	</sensor>
+</sensors>
