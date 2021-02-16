@@ -46,13 +46,6 @@ Gradleビルドシステムを使用しています。
 3. "Run'app'"でアプリを実行します。
 
 
-## About CO2 Sensor
-CO2センサーは、日本セラミック社からifLinkオープンコミュニティ向けに提供されたものを使用しています。<br>
-CO2濃度・気温・湿度・気圧・人感判断は、CO2センサーが計測してデータ送信しています。<br>
-（人感判断は、赤外線センサーを使って動くものを検出するという機能です）<br>
-5秒間センシング＋5秒間データ送信を繰り返し続ける仕様となっている為、画面にその旨を記載しています。<br>
-
-
 ## Usage
 事前にCO2センサーのBDアドレスと名称(room)を設定ファイルsensors.xmlに定義する必要があります。<br>
 [sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleSettings/sensors.xml)<br>
@@ -102,7 +95,11 @@ IBIライブラリを使用する事で、IBI形式で通信するデバイス�
 - 送達確認が可能（送信後、受信側からの応答を待つ機能）
 - 識別子とフラグを除いて、20byteのユーザデータを送信可能
 - データ型を指定可能（int, float, double, string, binary）
-
+<br>
+ClosedBusterでは、以下のIBIフォーマットのデータを受信する仕組みとなっています。<br>
+- CompanyCode: 0x09AF
+- MemberId: 0x0037
+- ModuleId: 0x0001
 
 ## About IAI (Iflink Application Interface)
 ifLinkの標準的なアプリ間通信形式です。ライブラリとIMSが公開されています。<br>
