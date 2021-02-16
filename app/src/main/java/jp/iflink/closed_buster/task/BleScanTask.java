@@ -114,8 +114,8 @@ public class BleScanTask implements Runnable {
 
     // IBI Setting Info
     private final int IBI_COMPANY_CODE_IFLINK;
-    private final int IBI_MEMBER_ID_NICERA;
-    private final int IBI_MODULE_ID_CO2;
+    private final int IBI_MEMBER_ID;
+    private final int IBI_MODULE_ID;
     // IBI Packet Manufacturer Data & Data Mask
     private final byte[] IBI_MFRDATA;
     private final byte[] IBI_MFRDATA_MASK;
@@ -123,14 +123,14 @@ public class BleScanTask implements Runnable {
     public BleScanTask(Resources rsrc) {
         // IBIパケット設定の読込み
         IBI_COMPANY_CODE_IFLINK = rsrc.getInteger(R.integer.ibi_company_code_iflink);
-        IBI_MEMBER_ID_NICERA = rsrc.getInteger(R.integer.ibi_member_id_nicera);
-        IBI_MODULE_ID_CO2 = rsrc.getInteger(R.integer.ibi_module_id_co2);
+        IBI_MEMBER_ID = rsrc.getInteger(R.integer.ibi_member_id);
+        IBI_MODULE_ID = rsrc.getInteger(R.integer.ibi_module_id);
         // Manufacturerデータのフィルタ情報の作成
         byte[] ibiMfrData = null, ibiMfrDataMask = null;
         try {
             ibiMfrData = Hex.decodeHex(String.format("%04X%04X%02X",
-                    IBI_MEMBER_ID_NICERA,
-                    IBI_MODULE_ID_CO2,
+                    IBI_MEMBER_ID,
+                    IBI_MODULE_ID,
                     IbiPacket.SEND_SENSOR).toCharArray());
             ibiMfrDataMask = Hex.decodeHex("FFFFFFFFFF".toCharArray());
         } catch (DecoderException e) {
@@ -537,7 +537,7 @@ public class BleScanTask implements Runnable {
         byte[] data = mnfrData.get(IBI_COMPANY_CODE_IFLINK);
         if (data != null) {
             IbiPacket packet = new IbiPacket(data);
-            if (packet.mMemberId == IBI_MEMBER_ID_NICERA && packet.mModuleId == IBI_MODULE_ID_CO2) {
+            if (packet.mMemberId == IBI_MEMBER_ID && packet.mModuleId == IBI_MODULE_ID) {
                 return packet;
             }
         }

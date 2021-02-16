@@ -8,7 +8,7 @@
     <string name="description_header">CO2濃度を監視して「密閉」を防止しています</string>
     <string name="description_header1">CO2濃度を監視して</string>
     <string name="description_header2">「密閉」を防止しています</string>
-    <string name="description_footer">センサー別モニタリング（5秒ごとにセンシングしています）</string>
+    <string name="description_footer">センサー別モニタリング</string>
     <string name="co2concentration">CO2濃度</string>
     <string name="co2_unit">ppm</string>
     <string name="co2rank_low">低</string>

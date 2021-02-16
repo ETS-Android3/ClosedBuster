@@ -8,7 +8,7 @@
     <string name="description_header">Monitor the CO2 concentration and prevent \"CLOSING\"</string>
     <string name="description_header1">Monitor the CO2 concentration</string>
     <string name="description_header2">and prevent \"CLOSING\"</string>
-    <string name="description_footer">Monitoring by sensor (Sensing every 5 seconds)</string>
+    <string name="description_footer">Monitoring by sensor</string>
     <string name="co2concentration">CO2</string>
     <string name="co2_unit">ppm</string>
     <string name="co2rank_low">Low</string>
