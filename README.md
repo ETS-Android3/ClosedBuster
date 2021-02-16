@@ -95,7 +95,6 @@ IBIライブラリを使用する事で、IBI形式で通信するデバイス�
 - 送達確認が可能（送信後、受信側からの応答を待つ機能）
 - 識別子とフラグを除いて、20byteのユーザデータを送信可能
 - データ型を指定可能（int, float, double, string, binary）
-<br>
 ClosedBusterでは、以下のIBIフォーマットのデータを受信する仕組みとなっています。<br>
 - CompanyCode: 0x09AF
 - MemberId: 0x0037
@@ -134,9 +133,6 @@ Android OS 7.0以降に対応しています。
 
 
 ## Build
-
-
-## About CO2 Sensor
 
 
 ## Usage
