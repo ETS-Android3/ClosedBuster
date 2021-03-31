@@ -297,37 +297,6 @@ public class ClosedBusterIaiService extends IntentService implements IfLinkAppIf
         return this.bleScanTask;
     }
 
-//    protected final void updateLogLevelSettings(final Set<String> settings) {
-//        if (bDBG) Log.d(TAG, "LogLevel settings=" + settings);
-//
-//        boolean isEnabledLog = false;
-//        if (settings.contains(LOG_LEVEL_CUSTOM_IMS)) {
-//            isEnabledLog = true;
-//        }
-//        bDBG = isEnabledLog;
-//
-//        isEnabledLog = settings.contains(LOG_LEVEL_CUSTOM_DEV);
-//        for (ClosedBusterIaiDevice device : mDeviceList) {
-//            device.enableLogLocal(isEnabledLog);
-//        }
-//    }
-
-//    protected final String[] getPermissions() {
-//        if (bDBG) Log.d(TAG, "getPermissions");
-//        // AndroidManifest.xmlのパーミッション
-//        List<String> permissions = new ArrayList<>(Arrays.asList(
-//                Manifest.permission.BLUETOOTH,
-//                Manifest.permission.BLUETOOTH_ADMIN,
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//                Manifest.permission.READ_EXTERNAL_STORAGE,
-//                Manifest.permission.ACCESS_COARSE_LOCATION
-//        ));
-//        if(Build.VERSION.SDK_INT >= 26) {
-//            permissions.add(Manifest.permission.FOREGROUND_SERVICE);
-//        }
-//        return permissions.toArray(new String[permissions.size()]);
-//    }
-
     private void startSendDataTimer(){
         // データ送信タイマーを停止
         stopSendDataTimer();

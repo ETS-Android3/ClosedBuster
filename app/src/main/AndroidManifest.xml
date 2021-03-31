@@ -7,7 +7,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
@@ -20,7 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="LockedOrientationActivity">
+        tools:ignore="LockedOrientationActivity"
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="q">
         <activity
             android:name="jp.iflink.closed_buster.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -36,7 +39,8 @@
         <service
             android:name="jp.iflink.closed_buster.iai.ClosedBusterIaiService"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:foregroundServiceType="location">
             <intent-filter>
                 <!--<action android:name="jp.co.toshiba.iflink.AndroidService" />-->
                 <action android:name="jp.iflink.closed_buster.ims.ClosedBusterIms" />
