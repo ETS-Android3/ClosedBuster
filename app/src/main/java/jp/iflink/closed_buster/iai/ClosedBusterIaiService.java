@@ -248,7 +248,7 @@ public class ClosedBusterIaiService extends IntentService implements IfLinkAppIf
         stopTask();
         if (blescan_task){
             // BLEスキャンタスクを起動
-            this.bleScanTask = new BleScanTask(rsrc);
+            this.bleScanTask = new BleScanTask(rsrc, prefs);
             boolean success = bleScanTask.init(getApplicationContext(), prefs);
             if (success){
                 // BLEスキャン初期化＆開始
@@ -479,6 +479,10 @@ public class ClosedBusterIaiService extends IntentService implements IfLinkAppIf
 
     // 設定変更通知用レシーバ
     private BroadcastReceiver changeConfigReceiver = new BroadcastReceiver() {
+        // スキャン設定変更有無
+        private boolean changeScanSettings;
+        // 実行間隔変更有無
+        private boolean changeInterval;
         @Override
         public void onReceive(Context context, Intent intent) {
             final String config = intent.getStringExtra("CONFIG");
@@ -486,61 +490,89 @@ public class ClosedBusterIaiService extends IntentService implements IfLinkAppIf
                 switch(config){
                     // スキャンモード
                     case BleScanTask.CONFIG_SCAN_MODE: {
-                        int scan_mode = intent.getIntExtra("VALUE", 0);
-                        // モードの変更
-                        boolean changed = bleScanTask.changeSettings(scan_mode);
-                        // スキャンの再始動
-                        if (changed){
-                            // スキャンモードが変更された場合は、スキャンを再始動
-                            bleScanTask.restartScan();
-                        }
+                        int value = intent.getIntExtra("VALUE", 0);
+                        // スキャンモードの変更
+                        changeScanSettings = bleScanTask.changeSettings(value);
                         break;
                     }
                     // アプリのレイアウト種別
                     case BleScanTask.CONFIG_APP_LAYOUT_TYPE: {
-                        AppLayoutType app_layout_type = AppLayoutType.judge(intent.getStringExtra("VALUE"));
+                        AppLayoutType value = AppLayoutType.judge(intent.getStringExtra("VALUE"));
                         // モードの変更
-                        bleScanTask.setAppLayoutType(app_layout_type);
+                        bleScanTask.setAppLayoutType(value);
                         break;
                     }
                     // センサーOFF判定時間
                     case BleScanTask.CONFIG_KEEP_DATA_MINUTES: {
-                        int keep_data_minutes = intent.getIntExtra("VALUE", 0);
+                        int value = intent.getIntExtra("VALUE", 0);
                         // 判定時間の変更
-                        bleScanTask.setKeepDataMinutes(keep_data_minutes);
+                        bleScanTask.setKeepDataMinutes(value);
                         break;
                     }
                     // スキャンログを残す
                     case BleScanTask.CONFIG_LOGGING_BLE_SCAN: {
-                        boolean logging_ble_scan = intent.getBooleanExtra("VALUE", false);
+                        boolean value = intent.getBooleanExtra("VALUE", false);
                         // モードの変更
-                        bleScanTask.setLoggingBleScan(logging_ble_scan);
+                        bleScanTask.setLoggingBleScan(value);
                         break;
                     }
                     // 未定義のセンサーも描画
                     case BleScanTask.CONFIG_DRAW_UNKNOWN_SENSOR: {
-                        boolean draw_unknown_sensor = intent.getBooleanExtra("VALUE", false);
+                        boolean value = intent.getBooleanExtra("VALUE", false);
                         // モードの変更
-                        bleScanTask.setDrawUnknownSensor(draw_unknown_sensor);
+                        bleScanTask.setDrawUnknownSensor(value);
                         break;
                     }
                     // 描画更新間隔
                     case BleScanTask.CONFIG_SCREEN_UPDATE_INTERVAL: {
-                        int screen_update_interval = intent.getIntExtra("VALUE", 0);
+                        int value = intent.getIntExtra("VALUE", 0);
                         // 判定時間の変更
-                        screenUpdateInterval.set(screen_update_interval);
-                        // タイマーを再設定
-                        startSendDataTimer();
+                        if (screenUpdateInterval.getAndSet(value) != value){
+                            changeInterval = true;
+                        }
                         break;
                     }
                     // データ送信間隔
                     case BleScanTask.CONFIG_SEND_DATA_INTERVAL: {
-                        int send_data_interval = intent.getIntExtra("VALUE", 0);
+                        int value = intent.getIntExtra("VALUE", 0);
                         // 判定時間の変更
-                        sendDataInterval.set(send_data_interval);
+                        if (sendDataInterval.getAndSet(value) != value){
+                            changeInterval = true;
+                        }
+                        break;
+                    }
+                    // IBIメンバーID
+                    case BleScanTask.CONFIG_IBI_MEMBER_ID: {
+                        int value = intent.getIntExtra("VALUE", 0);
+                        // IDの変更
+                        if (bleScanTask.setIbiMemberId(value)){
+                            changeScanSettings = true;
+                        }
+                        break;
+                    }
+                    // IBIモジュールID
+                    case BleScanTask.CONFIG_IBI_MODULE_ID: {
+                        int value = intent.getIntExtra("VALUE", 0);
+                        // IDの変更
+                        if (bleScanTask.setIbiModuleId(value)){
+                            changeScanSettings = true;
+                        }
+                        break;
+                    }
+                }
+            }
+            final String event = intent.getStringExtra("EVENT");
+            if (bleScanTask != null && event != null) {
+                if (event == BleScanTask.EVENT_FIXED_CHANGE) {
+                    if (changeScanSettings){
+                        changeScanSettings = false;
+                        // スキャンを再始動
+                        bleScanTask.restartScan();
+                    }
+                    if (changeInterval){
+                        changeInterval = false;
                         // タイマーを再設定
                         startSendDataTimer();
-                        break;
                     }
                 }
             }

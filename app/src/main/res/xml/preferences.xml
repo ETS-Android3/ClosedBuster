@@ -9,6 +9,20 @@
             android:entryValues="@array/scan_mode_entryValues"
             android:defaultValue="@string/default_scan_mode"
             app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="ibi_member_id"
+            android:title="@string/ibi_member_id"
+            android:defaultValue="@integer/default_ibi_member_id"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/ibi_member_id_dialog"
+            app:useSimpleSummaryProvider="true"/>
+        <EditTextPreference
+            android:key="ibi_module_id"
+            android:title="@string/ibi_module_id"
+            android:defaultValue="@integer/default_ibi_module_id"
+            android:selectAllOnFocus="true"
+            android:dialogTitle="@string/ibi_module_id_dialog"
+            app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/judge_line_co2">
         <EditTextPreference

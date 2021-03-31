@@ -66,6 +66,9 @@ public class BleScanTask implements Runnable {
     public static final String CONFIG_DRAW_UNKNOWN_SENSOR = TAG+".CONFIG.DRAW_UNKNOWN_SENSOR";
     public static final String CONFIG_SCREEN_UPDATE_INTERVAL = TAG+".CONFIG.SCREEN_UPDATE_INTERVAL";
     public static final String CONFIG_SEND_DATA_INTERVAL = TAG+".CONFIG.SEND_DATA_INTERVAL";
+    public static final String CONFIG_IBI_MEMBER_ID = TAG+".CONFIG.IBI_MEMBER_ID";
+    public static final String CONFIG_IBI_MODULE_ID = TAG+".CONFIG.IBI_MODULE_ID";
+    public static final String EVENT_FIXED_CHANGE = TAG+".EVENT.FIXED_CHANGE";
     public static final String NAME = "BleScan";
     private static final int REQUEST_ENABLE_BT = 1048;
 
@@ -114,30 +117,39 @@ public class BleScanTask implements Runnable {
 
     // IBI Setting Info
     private final int IBI_COMPANY_CODE_IFLINK;
-    private final int IBI_MEMBER_ID;
-    private final int IBI_MODULE_ID;
+    private int IBI_MEMBER_ID;
+    private int IBI_MODULE_ID;
     // IBI Packet Manufacturer Data & Data Mask
-    private final byte[] IBI_MFRDATA;
-    private final byte[] IBI_MFRDATA_MASK;
+    private byte[] IBI_MFRDATA;
+    private byte[] IBI_MFRDATA_MASK;
 
-    public BleScanTask(Resources rsrc) {
+    public BleScanTask(Resources rsrc, SharedPreferences prefs) {
         // IBIパケット設定の読込み
         IBI_COMPANY_CODE_IFLINK = rsrc.getInteger(R.integer.ibi_company_code_iflink);
-        IBI_MEMBER_ID = rsrc.getInteger(R.integer.ibi_member_id);
-        IBI_MODULE_ID = rsrc.getInteger(R.integer.ibi_module_id);
+        IBI_MEMBER_ID = getIntFromString(prefs, "ibi_member_id", rsrc.getInteger(R.integer.default_ibi_member_id));
+        IBI_MODULE_ID = getIntFromString(prefs, "ibi_module_id", rsrc.getInteger(R.integer.default_ibi_module_id));
         // Manufacturerデータのフィルタ情報の作成
-        byte[] ibiMfrData = null, ibiMfrDataMask = null;
+        byte[] ibiMfrDataMask = null;
         try {
-            ibiMfrData = Hex.decodeHex(String.format("%04X%04X%02X",
-                    IBI_MEMBER_ID,
-                    IBI_MODULE_ID,
-                    IbiPacket.SEND_SENSOR).toCharArray());
             ibiMfrDataMask = Hex.decodeHex("FFFFFFFFFF".toCharArray());
         } catch (DecoderException e) {
             Log.e(TAG, e.getMessage(), e);
         }
-        IBI_MFRDATA = ibiMfrData;
         IBI_MFRDATA_MASK = ibiMfrDataMask;
+    }
+
+    private byte[] createIbiManufacturerData(int ibiMemberId, int ibiModuleId){
+        // Manufacturerデータのフィルタ情報の作成
+        byte[] ibiMfrData = null;
+        try {
+            ibiMfrData = Hex.decodeHex(String.format("%04X%04X%02X",
+                    ibiMemberId,
+                    ibiModuleId,
+                    IbiPacket.SEND_SENSOR).toCharArray());
+        } catch (DecoderException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        return ibiMfrData;
     }
 
     @Override
@@ -373,6 +385,8 @@ public class BleScanTask implements Runnable {
             if (this.mBTLeScanner != null) {
                 Log.d(TAG, "startScan()");
                 mScanFilters.clear();
+                // Manufacturerデータのフィルタ情報の作成
+                IBI_MFRDATA = createIbiManufacturerData(IBI_MEMBER_ID, IBI_MODULE_ID);
                 // CO2センサーのIBIパケットのみスキャンするフィルタを追加
                 ScanFilter.Builder scanFilter = new ScanFilter.Builder();
                 if (IBI_MFRDATA != null && IBI_MFRDATA_MASK != null) {
@@ -631,6 +645,22 @@ public class BleScanTask implements Runnable {
 
     public void setDrawUnknownSensor(boolean check){
         this.drawUnknownSensor = check;
+    }
+
+    public boolean setIbiMemberId(int ibiMemberId){
+        if (IBI_MEMBER_ID != ibiMemberId){
+            IBI_MEMBER_ID = ibiMemberId;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setIbiModuleId(int ibiModuleId){
+        if (IBI_MODULE_ID != ibiModuleId){
+            IBI_MODULE_ID = ibiModuleId;
+            return true;
+        }
+        return false;
     }
 
     public String getUnitId(){

@@ -34,6 +34,10 @@
         <item>1</item>
         <item>2</item>
     </string-array>
+    <string name="ibi_member_id">IBI Member ID</string>
+    <string name="ibi_module_id">IBI Module ID</string>
+    <string name="ibi_member_id_dialog">IBI Member ID of the sensor (decimal number)</string>
+    <string name="ibi_module_id_dialog">IBI Module ID of the sensor (decimal number)</string>
     <string name="judge_line_co2">--- Judgment criteria of CO2 concentration --- </string>
     <string name="co2_high_ppm">criteria of High [ppm]</string>
     <string name="co2_low_ppm">criteria of Low [ppm]</string>

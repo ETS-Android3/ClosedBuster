@@ -21,6 +21,6 @@
     <bool name="default_draw_unknown_sensor">false</bool>
     <!-- IBIパケット設定 -->
     <integer name="ibi_company_code_iflink">0x09AF</integer>
-    <integer name="ibi_member_id">0x0037</integer>
-    <integer name="ibi_module_id">0x0001</integer>
+    <integer name="default_ibi_member_id">55</integer>
+    <integer name="default_ibi_module_id">1</integer>
 </resources>

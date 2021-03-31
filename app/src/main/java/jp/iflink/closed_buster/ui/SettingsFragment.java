@@ -13,7 +13,9 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.preference.EditTextPreference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,6 +30,10 @@ public class SettingsFragment extends PreferenceFragmentCompat
     private boolean bDBG = false;
     // ブロードキャストマネージャ
     private LocalBroadcastManager broadcastMgr;
+    // スキャン設定変更有無
+    private boolean changeScanSettings;
+    // 実行間隔変更有無
+    private boolean changeInterval;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,6 +79,8 @@ public class SettingsFragment extends PreferenceFragmentCompat
         setupInputType("motion_off_minutes", InputType.TYPE_CLASS_NUMBER);
         setupInputType("keep_data_minutes", InputType.TYPE_CLASS_NUMBER);
         setupInputType("send_data_interval", InputType.TYPE_CLASS_NUMBER);
+        setupInputType("ibi_member_id", InputType.TYPE_CLASS_NUMBER);
+        setupInputType("ibi_module_id", InputType.TYPE_CLASS_NUMBER);
         // デバッグフラグの設定
         bDBG = getDebugFlag(prefs);
     }
@@ -101,6 +109,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 intent.putExtra("CONFIG", BleScanTask.CONFIG_SCAN_MODE);
                 intent.putExtra("VALUE", scan_mode);
                 broadcastMgr.sendBroadcast(intent);
+                changeScanSettings = true;
                 break;
             }
             // アプリのレイアウト種別
@@ -146,6 +155,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 intent.putExtra("CONFIG", BleScanTask.CONFIG_SCREEN_UPDATE_INTERVAL);
                 intent.putExtra("VALUE", screen_update_interval);
                 broadcastMgr.sendBroadcast(intent);
+                changeInterval = true;
                 break;
             }
             // データ送信間隔
@@ -155,6 +165,27 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 intent.putExtra("CONFIG", BleScanTask.CONFIG_SEND_DATA_INTERVAL);
                 intent.putExtra("VALUE", send_data_interval);
                 broadcastMgr.sendBroadcast(intent);
+                changeInterval = true;
+                break;
+            }
+            // IBIメンバーID
+            case "ibi_member_id": {
+                int ibi_member_id = Integer.parseInt(prefs.getString(key, "0"));
+                Intent intent = new Intent(BleScanTask.ACTION_CHANGE_CONFIG);
+                intent.putExtra("CONFIG", BleScanTask.CONFIG_IBI_MEMBER_ID);
+                intent.putExtra("VALUE", ibi_member_id);
+                broadcastMgr.sendBroadcast(intent);
+                changeScanSettings = true;
+                break;
+            }
+            // IBIモジュールID
+            case "ibi_module_id": {
+                int ibi_module_id = Integer.parseInt(prefs.getString(key, "0"));
+                Intent intent = new Intent(BleScanTask.ACTION_CHANGE_CONFIG);
+                intent.putExtra("CONFIG", BleScanTask.CONFIG_IBI_MODULE_ID);
+                intent.putExtra("VALUE", ibi_module_id);
+                broadcastMgr.sendBroadcast(intent);
+                changeScanSettings = true;
                 break;
             }
             default:
@@ -166,12 +197,20 @@ public class SettingsFragment extends PreferenceFragmentCompat
     public void onResume() {
         super.onResume();
         getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
+        changeScanSettings = false;
+        changeInterval = false;
     }
 
     @Override
     public void onPause() {
         super.onPause();
         getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+        if (changeScanSettings || changeInterval){
+            Intent intent = new Intent(BleScanTask.ACTION_CHANGE_CONFIG);
+            intent.putExtra("EVENT", BleScanTask.EVENT_FIXED_CHANGE);
+            intent.putExtra("VALUE", true);
+            broadcastMgr.sendBroadcast(intent);
+        }
     }
 
     private int getIntFromString(SharedPreferences prefs, String key, int defaultValue){

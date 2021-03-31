@@ -29,6 +29,10 @@
         <item>Balanced : 2秒スキャン→3秒待つを繰り返し</item>
         <item>Low latency : ずっとスキャンします</item>
     </string-array>
+    <string name="ibi_member_id">IBIメンバーID</string>
+    <string name="ibi_module_id">IBIモジュールID</string>
+    <string name="ibi_member_id_dialog">センサーのIBIメンバーID ※10進数</string>
+    <string name="ibi_module_id_dialog">センサーのIBIモジュールID ※10進数</string>
     <string name="judge_line_co2">●CO2濃度の判定基準</string>
     <string name="co2_high_ppm">高の基準 [ppm]</string>
     <string name="co2_low_ppm">低の基準 [ppm]</string>
