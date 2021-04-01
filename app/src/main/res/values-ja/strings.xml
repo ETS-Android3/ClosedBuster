@@ -96,7 +96,7 @@
     <string name="debug_setting">●デバッグ用</string>
     <string name="logging_ble_scan">スキャンログを残す</string>
     <string name="logging_application">アプリケーションのログを残す</string>
-    <string name="draw_unknown_sensor">未定義のセンサーも描画</string>
+    <string name="draw_unknown_sensor">未登録のセンサーも描画</string>
     <!-- メッセージ -->
     <string name="data_load_fail">データの読み込みに失敗しました</string>
     <string name="data_save_fail">データの保存に失敗しました</string>

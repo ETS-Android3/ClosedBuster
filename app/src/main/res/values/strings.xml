@@ -107,7 +107,7 @@
     <string name="debug_setting">--- For Debugging ---</string>
     <string name="logging_ble_scan">Output scan log</string>
     <string name="logging_application">Output application log</string>
-    <string name="draw_unknown_sensor">Draw unknown sensor</string>
+    <string name="draw_unknown_sensor">Draw unregistered sensor</string>
     <!-- メッセージ -->
     <string name="data_load_fail">Failed to load data.</string>
     <string name="data_save_fail">Failed to save data.</string>
