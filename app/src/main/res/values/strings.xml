@@ -24,14 +24,14 @@
     <string name="graph_min_text">{0}min ago</string>
     <!-- センサー管理画面 -->
     <string name="detect_sensors">Detect</string>
-    <string name="register_sensors">Register</string>
+    <string name="register_sensors">Confirm operation</string>
     <string name="set_room_name">Tap to input sensor name</string>
     <string name="detected_sensors">Detected sensors</string>
     <string name="configured_sensors">Configured sensors</string>
     <string name="input_room_name">Input sensor name (BD Address {0})</string>
     <string name="input_room_name_add">Input sensor name (BD Address {0})\nPress OK and add it to the bottom list</string>
     <string name="title_confirm_register">Registration Confirmation</string>
-    <string name="msg_confirm_register">Register sensors. Are you sure?</string>
+    <string name="msg_confirm_register">Register sensors in this state. Are you sure?</string>
     <string name="msg_detected_sensors">{0} sensor[s] detected</string>
     <string name="msg_registered_sensors">The sensor has been registered. Please restart the app</string>
     <string name="msg_no_sensors_detected">no sensors detected</string>
@@ -39,6 +39,7 @@
     <string name="msg_deleted_sensor">sensor deleted</string>
     <string name="msg_added_sensor">sensor added</string>
     <string name="description_sensorlist_operation">After selecting a sensor, you can move it by long press and swipe up/down, delete it by swipe right</string>
+    <string name="description_sensorviewlimit">The top 1 in the smartphone layout and the top 2 in the tablet layout sensors will be displayed on the home screen</string>
     <!-- 設定画面 -->
     <string name="ble_settings">--- BLE Setting ---</string>
     <string name="scan_mode">Scan Mode</string>

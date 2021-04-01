@@ -24,21 +24,22 @@
     <string name="graph_min_text">{0}分前</string>
     <!-- センサー管理画面 -->
     <string name="detect_sensors">再検知</string>
-    <string name="register_sensors">登録</string>
+    <string name="register_sensors">操作を確定</string>
     <string name="set_room_name">タップしてセンサーの名称を入力</string>
     <string name="detected_sensors">検知したセンサー</string>
     <string name="configured_sensors">設定済みのセンサー</string>
     <string name="input_room_name">センサーの名称を入力（BDアドレス {0}）</string>
     <string name="input_room_name_add">センサーの名称を入力（BDアドレス {0}）\nOKを押すと下の欄に追加されます</string>
-    <string name="title_confirm_register">登録確認</string>
-    <string name="msg_confirm_register">センサーを登録します。よろしいですか？</string>
+    <string name="title_confirm_register">確認</string>
+    <string name="msg_confirm_register">この状態でセンサーを登録します。よろしいですか？</string>
     <string name="msg_detected_sensors">{0}件のセンサーを検知しました</string>
-    <string name="msg_registered_sensors">センサーを登録しました。アプリを再起動してください</string>
+    <string name="msg_registered_sensors">登録が完了しました。アプリを再起動してください</string>
     <string name="msg_no_sensors_detected">検知結果がありません</string>
     <string name="msg_no_sensors_registered">登録対象がありません</string>
     <string name="msg_deleted_sensor">センサーを削除しました</string>
     <string name="msg_added_sensor">センサーを追加しました</string>
     <string name="description_sensorlist_operation">センサーを選択後、長押しして上下にスワイプで移動、右にスワイプで削除できます</string>
+    <string name="description_sensorviewlimit">スマートフォン表示では上位1つ、タブレット表示では上位2つまでホーム画面に表示されます</string>
     <!-- 設定画面 -->
     <string name="ble_settings">●BLE設定</string>
     <string name="scan_mode">スキャンモード</string>
@@ -57,7 +58,7 @@
     <string name="co2_high_judge_dialog">指定した[ppm]以上で判定</string>
     <string name="co2_low_judge_dialog">指定した[ppm]未満で判定</string>
     <string name="behavior_setting">●動作設定</string>
-    <string name="app_layout_type">レイアウトモード</string>
+    <string name="app_layout_type">表示モード</string>
     <string-array name="app_layout_type_entries">
         <item>スマートフォン</item>
         <item>10インチタブレット</item>
