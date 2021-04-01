@@ -125,10 +125,10 @@ IAIライブラリを使用する事で、IAI形式で通信するアプリな�
 - IMSと違って自動起動しないので、UIのあるアプリに適している
 
 ## Depends
-このアプリはAndroid OS 7.0～10.0に対応しています。
-This app is Compatible with Android OS 7.0 to 10.0.
-以下のライブラリを使用しています。
-The following libraries are used in this app.
+このアプリはAndroid OS 7.0～10.0に対応しています。<br>
+This app is Compatible with Android OS 7.0 to 10.0.<br>
+以下のライブラリを使用しています。<br>
+The following libraries are used in this app.<br>
 - Gaugelibrary v0.2.2
 - MPAndroid Chart v3.0.3
 - Gson v2.8.6
