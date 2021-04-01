@@ -48,6 +48,7 @@ import java.util.Map;
 
 import jp.iflink.closed_buster.iai.ClosedBusterIaiService;
 import jp.iflink.closed_buster.model.SensorData;
+import jp.iflink.closed_buster.setting.AppLayoutType;
 import jp.iflink.closed_buster.task.BleScanTask;
 import jp.iflink.closed_buster.ui.ISensorFragment;
 import jp.iflink.closed_buster.ui.SensorSettingsFragment;
@@ -86,11 +87,14 @@ public class FullscreenActivity extends AppCompatActivity {
         Resources rsrc = getResources();
 
         // Android6.0以降の場合、権限を要求
+        boolean isRequestPermission = false;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermission();
+            isRequestPermission = requestPermission();
         }
 
-        createView();
+        if (!isRequestPermission){
+            createView();
+        }
     }
 
     private void createView(){
@@ -130,23 +134,27 @@ public class FullscreenActivity extends AppCompatActivity {
         LocalBroadcastManager broadcastMgr = LocalBroadcastManager.getInstance(getApplicationContext());
         broadcastMgr.registerReceiver(bleScanReceiver, new IntentFilter(BleScanTask.ACTION_SCAN));
         broadcastMgr.registerReceiver(undefinedBdAddressReceiver, new IntentFilter(BleScanTask.ACTION_UNDEFINED_BDADDRESS));
+        broadcastMgr.registerReceiver(changeConfigReceiver, new IntentFilter(BleScanTask.ACTION_CHANGE_CONFIG));
 
         // BluetoothをONにする
         BleScanTask.enableBluetooth(this);
 
         // サービスを開始する
         startMicroService();
-    }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
+        // 標準のアクションバーを隠す
         delayedHide(100);
     }
+
+//    @Override
+//    protected void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//
+//        // Trigger the initial hide() shortly after the activity has been
+//        // created, to briefly hint to the user that UI controls
+//        // are available.
+//        delayedHide(100);
+//    }
 
     @Override
     protected void onDestroy() {
@@ -155,6 +163,8 @@ public class FullscreenActivity extends AppCompatActivity {
         // BLEスキャン用のレシーバーを解除
         LocalBroadcastManager broadcastMgr = LocalBroadcastManager.getInstance(getApplicationContext());
         broadcastMgr.unregisterReceiver(bleScanReceiver);
+        broadcastMgr.unregisterReceiver(undefinedBdAddressReceiver);
+        broadcastMgr.unregisterReceiver(changeConfigReceiver);
 //        // メインサービスのアンバインド
 //        unbindService(mServiceConnection);
         // バックグラウンド動作判定
@@ -253,6 +263,30 @@ public class FullscreenActivity extends AppCompatActivity {
         }
     };
 
+    // 設定変更通知用レシーバ
+    private BroadcastReceiver changeConfigReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // フラグメントを未取得or破棄からの再取得の場合、データ送信先フラグメントを取得する
+            if (isDetachedFragment(sensorFragment)){
+                sensorFragment = findFragment(ISensorFragment.class);
+            }
+            if (sensorFragment != null){
+                final String config = intent.getStringExtra("CONFIG");
+                if (config != null){
+                    switch(config){
+                        // センサー定義XMLファイルの更新
+                        case BleScanTask.CONFIG_SENSOR_XML: {
+                            // センサー定義XMLファイルを再読込する
+                            sensorFragment.reloadXmlSensorList();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    };
+
 //    private final ServiceConnection mServiceConnection = new ServiceConnection() {
 //        @Override
 //        public void onServiceConnected(ComponentName componentname, IBinder binder) {
@@ -294,7 +328,7 @@ public class FullscreenActivity extends AppCompatActivity {
 //    };
 
     @TargetApi(Build.VERSION_CODES.M)
-    private void requestPermission() {
+    private boolean requestPermission() {
         ArrayList<String> list = new ArrayList<>();
 
         for (String permission : permissions) {
@@ -305,6 +339,31 @@ public class FullscreenActivity extends AppCompatActivity {
         }
         if (!list.isEmpty()) {
             requestPermissions(list.toArray(new String[list.size()]), 1);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+        if (grantResults.length <= 0) { return; }
+        boolean allPermissionGranted = true;
+        for (int grantResult : grantResults) {
+            if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                allPermissionGranted = false;
+                break;
+            }
+        }
+        if (requestCode == 1){
+            if (allPermissionGranted) {
+                // 全ての許可が取れている場合は通常処理
+                createView();
+            } else {
+                // 一つでも許可が取れなかった場合はトーストを出して終了
+                Toast.makeText(this,
+                        getResources().getString(R.string.msg_auth_warn), Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
     }
 

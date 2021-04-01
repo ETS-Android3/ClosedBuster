@@ -161,10 +161,13 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         // グラフマネージャの初期化
         mGraphManager = new GraphManager(getContext(), prefs, getResources());
         mGraphManager.init(mDataStore);
+        // センサー定義Xmlを読み込み
+        reloadXmlSensorList();
+    }
 
+    public void reloadXmlSensorList(){
         // センサー定義Xmlを読み込み、センサーリストを作成
         this.mSensorList = reloadXmlSensorList(this.getContext(), this.mSensorList);
-
         // BdAddress と id のマップを生成
         this.mBdAddressIdMap = createBdAddressIdMap(mSensorList);
     }

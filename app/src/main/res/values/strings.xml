@@ -33,7 +33,7 @@
     <string name="title_confirm_register">Registration Confirmation</string>
     <string name="msg_confirm_register">Register sensors. Are you sure?</string>
     <string name="msg_detected_sensors">{0} sensor[s] detected</string>
-    <string name="msg_registered_sensors">The sensor has been registered</string>
+    <string name="msg_registered_sensors">The sensor has been registered. Please restart the app</string>
     <string name="msg_no_sensors_detected">no sensors detected</string>
     <string name="msg_no_sensors_registered">no sensors registered</string>
     <string name="msg_deleted_sensor">sensor deleted</string>
@@ -111,6 +111,7 @@
     <!-- メッセージ -->
     <string name="data_load_fail">Failed to load data.</string>
     <string name="data_save_fail">Failed to save data.</string>
+    <string name="msg_auth_warn">The required permissions were not granted.Quit the application.</string>
     <!-- Fragment Label -->
     <string name="home_fragment_label">Home</string>
     <string name="setting_fragment_label">Setting</string>

@@ -7,4 +7,5 @@ import jp.iflink.closed_buster.model.SensorData;
 
 public interface ISensorFragment {
     void drawSensorData(Map<String, SensorData> sensorData, Date lastDataTime, boolean drawUnknown);
+    void reloadXmlSensorList();
 }

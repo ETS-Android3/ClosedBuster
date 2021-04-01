@@ -33,7 +33,7 @@
     <string name="title_confirm_register">登録確認</string>
     <string name="msg_confirm_register">センサーを登録します。よろしいですか？</string>
     <string name="msg_detected_sensors">{0}件のセンサーを検知しました</string>
-    <string name="msg_registered_sensors">センサーを登録しました</string>
+    <string name="msg_registered_sensors">センサーを登録しました。アプリを再起動してください</string>
     <string name="msg_no_sensors_detected">検知結果がありません</string>
     <string name="msg_no_sensors_registered">登録対象がありません</string>
     <string name="msg_deleted_sensor">センサーを削除しました</string>
@@ -100,6 +100,7 @@
     <!-- メッセージ -->
     <string name="data_load_fail">データの読み込みに失敗しました</string>
     <string name="data_save_fail">データの保存に失敗しました</string>
+    <string name="msg_auth_warn">必要な権限が許可されませんでした。アプリを終了します。</string>
     <!-- Fragment Label -->
     <string name="home_fragment_label">Home</string>
     <string name="setting_fragment_label">Setting</string>
