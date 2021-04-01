@@ -23,6 +23,7 @@ import android.util.SparseArray;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Hex;
@@ -58,7 +59,9 @@ import jp.iflink.closed_buster.util.XmlUtil;
 public class BleScanTask implements Runnable {
     private static final String TAG = "BLE";
     public static final String ACTION_SCAN = TAG + ".SCAN";
+    public static final String ACTION_UNDEFINED_BDADDRESS = TAG+".UNDEFINED_BDADDRESS";
     public static final String ACTION_CHANGE_CONFIG = TAG+".CHANGE_CONFIG";
+
     public static final String CONFIG_SCAN_MODE = TAG+".CONFIG.SCAN_MODE";
     public static final String CONFIG_APP_LAYOUT_TYPE = TAG+".CONFIG.APP_LAYOUT_TYPE";
     public static final String CONFIG_KEEP_DATA_MINUTES = TAG+".CONFIG.KEEP_DATA_MINUTES";
@@ -69,11 +72,15 @@ public class BleScanTask implements Runnable {
     public static final String CONFIG_IBI_MEMBER_ID = TAG+".CONFIG.IBI_MEMBER_ID";
     public static final String CONFIG_IBI_MODULE_ID = TAG+".CONFIG.IBI_MODULE_ID";
     public static final String EVENT_FIXED_CHANGE = TAG+".EVENT.FIXED_CHANGE";
+    public static final String CONFIG_SENSOR_XML = TAG+".CONFIG.SENSOR_XML";
+
     public static final String NAME = "BleScan";
     private static final int REQUEST_ENABLE_BT = 1048;
 
     // コンテキスト
     private Context applicationContext;
+    // ブロードキャストマネージャ
+    private LocalBroadcastManager broadcastMgr;
     // アプリ共通設定
     private SharedPreferences prefs;
     private boolean loggingBleScan;
@@ -232,6 +239,8 @@ public class BleScanTask implements Runnable {
     public boolean init(Context applicationContext, SharedPreferences prefs) {
         // アプリケーションコンテキストを設定
         this.applicationContext = applicationContext;
+        // ブロードキャストマネージャを生成
+        this.broadcastMgr = LocalBroadcastManager.getInstance(applicationContext);
         // アプリ共通設定を取得
         this.prefs = prefs;
         // BLEステータス更新
@@ -270,7 +279,7 @@ public class BleScanTask implements Runnable {
         this.mBtGatt = null;
     }
 
-    private synchronized void reloadXmlSensorBdAddressList(Context context){
+    public synchronized void reloadXmlSensorBdAddressList(Context context){
         // Xmlセンサーリストの読み込み
         List<SensorInfo> xmlSensorList = XmlUtil.readXml(context);
         // XmlセンサーBDアドレスリストの作成
@@ -599,6 +608,8 @@ public class BleScanTask implements Runnable {
 
         // 返却用インスタンス
         Map<String, CalculatedSensorData> result = new LinkedHashMap<>(mCo2Map.size());
+        // 未定義のBDアドレスリスト
+        List<String> sendBdAddressList = new ArrayList<>();
 
         for (Iterator<Map.Entry<String, CalculatedSensorData>> it = mCo2Map.entrySet().iterator(); it.hasNext(); ){
             Map.Entry<String, CalculatedSensorData> entry = it.next();
@@ -614,6 +625,8 @@ public class BleScanTask implements Runnable {
             if (!xmlSensorBdAddressList.contains(bdAddress)){
                 // 未定義のBDアドレスのセンサーデータは削除
                 it.remove();
+                // 未定義のBDアドレスリストに追加
+                sendBdAddressList.add(bdAddress);
                 if (drawUnknownSensor){
                     // 未定義のセンサーデータを描画する場合のみ、返却対象に追加
                     result.put(bdAddress, calculated);
@@ -622,6 +635,14 @@ public class BleScanTask implements Runnable {
                 // 返却対象に追加
                 result.put(bdAddress, calculated);
             }
+        }
+
+        if (!sendBdAddressList.isEmpty()){
+            // 未定義のBDアドレス配列を通知
+            Intent intent = new Intent(ACTION_UNDEFINED_BDADDRESS);
+            String[] sendBdAddresses = sendBdAddressList.toArray(new String[sendBdAddressList.size()]);
+            intent.putExtra("bdAddresses", sendBdAddresses);
+            broadcastMgr.sendBroadcast(intent);
         }
 
         // ログ差込

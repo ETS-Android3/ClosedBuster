@@ -5,7 +5,7 @@
     <string name="ims_schema_name" translatable="false">closedbuster</string>>
     <string name="ims_asset_name" translatable="false">CLOSEDBUSTER_EPA</string>
     <!-- デフォルト値設定 -->
-    <string name="default_app_layout_type" translatable="false">smp</string><!-- tablet8/tablet10/smp -->
+    <string name="default_app_layout_type" translatable="false">tablet10</string><!-- tablet8/tablet10/smp -->
     <string name="default_scan_mode" translatable="false">0</string>
     <integer name="default_co2_high_ppm">1500</integer>
     <integer name="default_co2_low_ppm">1000</integer>

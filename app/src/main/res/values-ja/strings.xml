@@ -3,7 +3,8 @@
     <!-- メニュー -->
     <string name="menu_setting">設定</string>
     <string name="setting_activity">ClosedBuster IMS設定メニュー</string>
-    <!-- メイン画面 -->
+    <string name="nav_header_subtitle">ifLink Open Community</string>
+    <!-- ホーム画面 -->
     <string name="recordtime">更新時刻</string>
     <string name="description_header">CO2濃度を監視して「密閉」を防止しています</string>
     <string name="description_header1">CO2濃度を監視して</string>
@@ -21,6 +22,23 @@
     <string name="humidity_text">{0}％</string>
     <string name="barometer_text">{0}hPa</string>
     <string name="graph_min_text">{0}分前</string>
+    <!-- センサー管理画面 -->
+    <string name="detect_sensors">再検知</string>
+    <string name="register_sensors">登録</string>
+    <string name="set_room_name">タップしてセンサーの名称を入力</string>
+    <string name="detected_sensors">検知したセンサー</string>
+    <string name="configured_sensors">設定済みのセンサー</string>
+    <string name="input_room_name">センサーの名称を入力（BDアドレス {0}）</string>
+    <string name="input_room_name_add">センサーの名称を入力（BDアドレス {0}）\nOKを押すと下の欄に追加されます</string>
+    <string name="title_confirm_register">登録確認</string>
+    <string name="msg_confirm_register">センサーを登録します。よろしいですか？</string>
+    <string name="msg_detected_sensors">{0}件のセンサーを検知しました</string>
+    <string name="msg_registered_sensors">センサーを登録しました</string>
+    <string name="msg_no_sensors_detected">検知結果がありません</string>
+    <string name="msg_no_sensors_registered">登録対象がありません</string>
+    <string name="msg_deleted_sensor">センサーを削除しました</string>
+    <string name="msg_added_sensor">センサーを追加しました</string>
+    <string name="description_sensorlist_operation">センサーを選択後、長押しして上下にスワイプで移動、右にスワイプで削除できます</string>
     <!-- 設定画面 -->
     <string name="ble_settings">●BLE設定</string>
     <string name="scan_mode">スキャンモード</string>
@@ -85,4 +103,9 @@
     <!-- Fragment Label -->
     <string name="home_fragment_label">Home</string>
     <string name="setting_fragment_label">Setting</string>
+    <string name="sensorsetting_fragment_label">Sensor Setting</string>
+    <!-- SubMenu Title -->
+    <string name="nav_menu_title_home">ホーム</string>
+    <string name="nav_menu_title_sensor_settings">センサー管理</string>
+    <string name="nav_menu_title_settings">設定</string>
 </resources>

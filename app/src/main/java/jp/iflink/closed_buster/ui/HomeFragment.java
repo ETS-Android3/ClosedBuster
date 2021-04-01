@@ -9,12 +9,15 @@ import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.ColorInt;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.preference.PreferenceManager;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,10 +66,8 @@ public class HomeFragment extends Fragment implements ISensorFragment {
     // 前回更新時刻テキスト表示
     private TextView mRecordTime;
     private LinearLayout mRecordTimeBlock;
-    // 設定ボタン
-    private FloatingActionButton mSettingButton;
-    // ログ出力用
-    private LogUseUtil loguseutil = new LogUseUtil();
+    // メニューボタン
+    private FloatingActionButton mMenuButton;
     // 最新のセンサー情報
     private int lastMaxCo2 = 0;
     private Co2Rank lastMaxCo2Rank = null;
@@ -149,9 +150,6 @@ public class HomeFragment extends Fragment implements ISensorFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate");
-        this.loguseutil = new LogUseUtil(Log.DEBUG);
-        // ログ差込
-        ////loguseutil.specific(TAG, "onCreate：Start", "DEBUG", 3);
 
         // ハンドラの初期化
         this.mHandler = new Handler();
@@ -169,17 +167,12 @@ public class HomeFragment extends Fragment implements ISensorFragment {
 
         // BdAddress と id のマップを生成
         this.mBdAddressIdMap = createBdAddressIdMap(mSensorList);
-
-        // ログ差込
-        //loguseutil.specific(TAG, "onCreate End", "DEBUG", 3);
     }
 
     @SuppressLint("SourceLockedOrientationActivity")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView");
-        // ログ差込
-        //loguseutil.specific(TAG, "onCreateView：START", "DEBUG", 3);
 
         // アプリ共通設定
         Resources rsrc = getResources();
@@ -198,12 +191,12 @@ public class HomeFragment extends Fragment implements ISensorFragment {
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         } else if (appLayoutType == AppLayoutType.TABLET_8){
-            // ZenPad版の場合
+            // 8インチ版タブレットの場合
             root = inflater.inflate(R.layout.fragment_tablet8, container, false);
             // 横画面に固定
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
-            // それ以外（Vankyo等）の場合
+            // それ以外（10インチ版タブレット）の場合
             root = inflater.inflate(R.layout.fragment_home, container, false);
             // 横画面に固定
             getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -269,14 +262,13 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         // 前回更新時刻
         mRecordTime = root.findViewById(R.id.tv_recordtime);
         mRecordTimeBlock = root.findViewById(R.id.tv_recordtime_block);
-        // 設定ボタン
-        mSettingButton = root.findViewById(R.id.btn_setting);
-        //mSettingButton.setBackgroundTintMode(PorterDuff.Mode.ADD);
-        mSettingButton.setOnClickListener(new View.OnClickListener() {
+        // メニューボタン
+        final DrawerLayout drawer = getActivity().findViewById(R.id.drawer_layout);
+        mMenuButton = root.findViewById(R.id.btn_menu);
+        mMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(HomeFragment.this)
-                        .navigate(R.id.action_HomeFragment_to_SettingsFragment);
+                drawer.openDrawer(GravityCompat.START);
             }
         });
 
@@ -306,9 +298,6 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         LB_CO2RANK_HIGH = getString(R.string.co2rank_high);
         LB_CO2RANK_MIDDLE = getString(R.string.co2rank_middle);
         LB_CO2RANK_LOW = getString(R.string.co2rank_low);
-
-        // ログ差込
-        //loguseutil.specific(TAG, "onCreateView：END", "DEBUG", 3);
 
         return root;
     }
@@ -371,9 +360,6 @@ public class HomeFragment extends Fragment implements ISensorFragment {
     }
 
     public synchronized void drawEachSensorData(SensorData calculatedModel) {
-        // ログ差込
-        //loguseutil.specific(TAG, "drawEachSensorData：START", "DEBUG", 3);
-
         // リソース取得
         Resources rsrc = getResources();
 
@@ -536,9 +522,6 @@ public class HomeFragment extends Fragment implements ISensorFragment {
                 mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_nomotion);
             }
         }
-
-        // ログ差込
-        //loguseutil.specific(TAG, "drawEachSensorData：END", "DEBUG", 3);
     }
 
     private SensorInfo findSensor(int xmlCo2Id){
@@ -574,8 +557,6 @@ public class HomeFragment extends Fragment implements ISensorFragment {
     public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart");
-        // ログ差込
-        //loguseutil.specific(TAG, "onStart：START", "DEBUG", 3);
 
         // デバッグフラグの設定
         this.bDBG = getDebugFlag(prefs);
@@ -630,9 +611,6 @@ public class HomeFragment extends Fragment implements ISensorFragment {
                 }
             }, timerDelay, 1000 * 60);
         }
-
-        // ログ差込
-        //loguseutil.specific(TAG, "onStart：END", "DEBUG", 3);
     }
 
     private void drawMainSensorData(){

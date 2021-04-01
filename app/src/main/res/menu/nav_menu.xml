@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/activity_fullscreen">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/HomeFragment"
+            android:icon="@drawable/ic_icon_barometer"
+            android:title="@string/nav_menu_title_home" />
+        <item
+            android:id="@+id/SensorSettingsFragment"
+            android:icon="@drawable/ic_list_black_24dp"
+            android:title="@string/nav_menu_title_sensor_settings" />
+        <item
+            android:id="@+id/SettingsFragment"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/nav_menu_title_settings" />
+    </group>
+
+</menu>

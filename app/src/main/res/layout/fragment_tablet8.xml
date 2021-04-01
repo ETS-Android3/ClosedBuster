@@ -219,7 +219,7 @@
                                 android:fontFamily="sans-serif-medium"
                                 android:gravity="bottom"
                                 android:text="0000"
-                                android:textColor="@color/darkgray"
+                                android:textColor="@color/messageDark"
                                 android:textSize="33sp" />
 
                             <TextView
@@ -230,7 +230,7 @@
                                 android:gravity="bottom"
                                 android:paddingBottom="4dp"
                                 android:text="@string/co2_unit"
-                                android:textColor="@color/darkgray"
+                                android:textColor="@color/messageDark"
                                 android:textSize="23dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -268,7 +268,7 @@
                                     android:fontFamily="sans-serif-medium"
                                     android:text="@string/co2rank_text_low"
                                     android:textAlignment="viewStart"
-                                    android:textColor="@color/darkgray"
+                                    android:textColor="@color/messageDark"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -290,7 +290,7 @@
                                     android:fontFamily="sans-serif-medium"
                                     android:text="@string/co2rank_text_middle"
                                     android:textAlignment="viewStart"
-                                    android:textColor="@color/darkgray"
+                                    android:textColor="@color/messageDark"
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -312,7 +312,7 @@
                                     android:fontFamily="sans-serif-medium"
                                     android:text="@string/co2rank_text_high"
                                     android:textAlignment="viewStart"
-                                    android:textColor="@color/darkgray"
+                                    android:textColor="@color/messageDark"
                                     android:textSize="12sp" />
 
                             </LinearLayout>
@@ -518,7 +518,7 @@
                                 android:paddingBottom="0dp"
                                 android:text="0000"
                                 android:textAlignment="viewStart"
-                                android:textColor="@color/darkgray"
+                                android:textColor="@color/messageDark"
                                 android:textSize="18dp"
                                 android:textStyle="bold" />
 
@@ -533,7 +533,7 @@
                                 android:paddingBottom="20dp"
                                 android:text="@string/co2_unit"
                                 android:textAlignment="viewStart"
-                                android:textColor="@color/darkgray"
+                                android:textColor="@color/messageDark"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
 
@@ -698,7 +698,7 @@
                                 android:paddingBottom="0dp"
                                 android:text="0000"
                                 android:textAlignment="viewStart"
-                                android:textColor="@color/darkgray"
+                                android:textColor="@color/messageDark"
                                 android:textSize="18dp"
                                 android:textStyle="bold" />
 
@@ -713,7 +713,7 @@
                                 android:paddingBottom="20dp"
                                 android:text="@string/co2_unit"
                                 android:textAlignment="viewStart"
-                                android:textColor="@color/darkgray"
+                                android:textColor="@color/messageDark"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
 
@@ -735,7 +735,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_setting"
+        android:id="@+id/btn_menu"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="start"

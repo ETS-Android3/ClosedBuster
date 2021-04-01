@@ -3,7 +3,8 @@
     <!-- メニュー -->
     <string name="menu_setting">Settings</string>
     <string name="setting_activity">ClosedBuster IMS Settings</string>
-    <!-- メイン画面 -->
+    <string name="nav_header_subtitle">ifLink Open Community</string>
+    <!-- ホーム画面 -->
     <string name="recordtime">Updated</string>
     <string name="description_header">Monitor the CO2 concentration and prevent \"CLOSING\"</string>
     <string name="description_header1">Monitor the CO2 concentration</string>
@@ -21,6 +22,23 @@
     <string name="humidity_text">{0}%</string>
     <string name="barometer_text">{0}hPa</string>
     <string name="graph_min_text">{0}min ago</string>
+    <!-- センサー管理画面 -->
+    <string name="detect_sensors">Detect</string>
+    <string name="register_sensors">Register</string>
+    <string name="set_room_name">Tap to input sensor name</string>
+    <string name="detected_sensors">Detected sensors</string>
+    <string name="configured_sensors">Configured sensors</string>
+    <string name="input_room_name">Input sensor name (BD Address {0})</string>
+    <string name="input_room_name_add">Input sensor name (BD Address {0})\nPress OK and add it to the bottom list</string>
+    <string name="title_confirm_register">Registration Confirmation</string>
+    <string name="msg_confirm_register">Register sensors. Are you sure?</string>
+    <string name="msg_detected_sensors">{0} sensor[s] detected</string>
+    <string name="msg_registered_sensors">The sensor has been registered</string>
+    <string name="msg_no_sensors_detected">no sensors detected</string>
+    <string name="msg_no_sensors_registered">no sensors registered</string>
+    <string name="msg_deleted_sensor">sensor deleted</string>
+    <string name="msg_added_sensor">sensor added</string>
+    <string name="description_sensorlist_operation">After selecting a sensor, you can move it by long press and swipe up/down, delete it by swipe right</string>
     <!-- 設定画面 -->
     <string name="ble_settings">--- BLE Setting ---</string>
     <string name="scan_mode">Scan Mode</string>
@@ -95,5 +113,10 @@
     <string name="data_save_fail">Failed to save data.</string>
     <!-- Fragment Label -->
     <string name="home_fragment_label">Home</string>
-    <string name="setting_fragment_label">Setting</string>>
+    <string name="setting_fragment_label">Setting</string>
+    <string name="sensorsetting_fragment_label">Sensor Setting</string>
+    <!-- SubMenu Title -->
+    <string name="nav_menu_title_home">Home</string>
+    <string name="nav_menu_title_sensor_settings">Sensor Settings</string>
+    <string name="nav_menu_title_settings">App Settings</string>
 </resources>

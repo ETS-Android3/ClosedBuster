@@ -9,11 +9,15 @@
         android:id="@+id/HomeFragment"
         android:name="jp.iflink.closed_buster.ui.HomeFragment"
         android:label="@string/home_fragment_label"
+        android:screenOrientation="landscape"
         tools:layout="@layout/fragment_home">
 
         <action
             android:id="@+id/action_HomeFragment_to_SettingsFragment"
             app:destination="@id/SettingsFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_SensorSettingsFragment"
+            app:destination="@id/SensorSettingsFragment" />
     </fragment>
 
     <fragment
@@ -22,6 +26,15 @@
         android:label="@string/setting_fragment_label">
         <action
             android:id="@+id/action_SettingsFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SensorSettingsFragment"
+        android:name="jp.iflink.closed_buster.ui.SensorSettingsFragment"
+        android:label="@string/sensorsetting_fragment_label">
+        <action
+            android:id="@+id/action_SensorSettingsFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
 

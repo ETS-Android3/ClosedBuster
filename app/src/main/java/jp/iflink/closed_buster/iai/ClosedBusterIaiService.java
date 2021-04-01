@@ -510,6 +510,12 @@ public class ClosedBusterIaiService extends IntentService implements IfLinkAppIf
                         }
                         break;
                     }
+                    // センサー定義XMLファイルの更新
+                    case BleScanTask.CONFIG_SENSOR_XML: {
+                        // センサー定義XMLファイルを再読込する
+                        bleScanTask.reloadXmlSensorBdAddressList(getApplicationContext());
+                        break;
+                    }
                     // IBIメンバーID
                     case BleScanTask.CONFIG_IBI_MEMBER_ID: {
                         int value = intent.getIntExtra("VALUE", 0);

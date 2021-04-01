@@ -5,7 +5,10 @@ import android.annotation.SuppressLint;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -30,17 +33,24 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import jp.iflink.closed_buster.iai.ClosedBusterIaiService;
 import jp.iflink.closed_buster.model.SensorData;
 import jp.iflink.closed_buster.task.BleScanTask;
 import jp.iflink.closed_buster.ui.ISensorFragment;
+import jp.iflink.closed_buster.ui.SensorSettingsFragment;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -55,12 +65,15 @@ public class FullscreenActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
     // データ送信先フラグメント
     private ISensorFragment sensorFragment;
+    // センサー管理画面フラグメント
+    private SensorSettingsFragment sensorSettingsFragment;
     // Appバー構成設定
     private AppBarConfiguration mAppBarConfig;
 
     // アプリの必要権限
     String[] permissions = new String[] {
             Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE
     };
@@ -68,34 +81,55 @@ public class FullscreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fullscreen);
-        mVisible = true;
         // アプリ共通設定を取得
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Resources rsrc = getResources();
-
-        mContentView = findViewById(R.id.fullscreen_content);
-        fragmentManager = getSupportFragmentManager();
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-
-        Log.d(TAG, "onCreate：navController start");
-        NavGraph navGraph = navController.getNavInflater() .inflate(R.navigation.nav_graph);
-
-        // 起動時のフラグメントを指定
-        navGraph.setStartDestination(R.id.HomeFragment);
-        navController.setGraph(navGraph);
-
-        mAppBarConfig = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfig);
 
         // Android6.0以降の場合、権限を要求
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermission();
         }
-        // BLEスキャン用のレシーバーを登録
+
+        createView();
+    }
+
+    private void createView(){
+        // 標準画面を設定
+        setContentView(R.layout.activity_fullscreen);
+        mVisible = true;
+
+        mContentView = findViewById(R.id.fullscreen_content);
+        fragmentManager = getSupportFragmentManager();
+
+        // 標準画面のツールバーに値を設置
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // バージョンをナビゲーションヘッダに記載
+        View navHeaderView = navigationView.getHeaderView(0);
+        TextView mVersion = navHeaderView.findViewById(R.id.versionCode);
+        mVersion.setText(BuildConfig.VERSION_NAME);
+
+        // ナビゲーションに標準画面のフラグメントを設定
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavGraph navGraph = navController.getNavInflater().inflate(R.navigation.nav_graph);
+        navController.setGraph(navGraph);
+        // 起動時のフラグメントを指定
+        navGraph.setStartDestination(R.id.HomeFragment);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        mAppBarConfig = new AppBarConfiguration.Builder(navController.getGraph())
+                .setOpenableLayout(drawer)
+                .build();
+
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfig);
+        NavigationUI.setupWithNavController(navigationView, navController);
+        drawer.closeDrawer(GravityCompat.START);
+
+        // BLEスキャン用、未定義BDアドレス取得用のレシーバーを登録
         LocalBroadcastManager broadcastMgr = LocalBroadcastManager.getInstance(getApplicationContext());
         broadcastMgr.registerReceiver(bleScanReceiver, new IntentFilter(BleScanTask.ACTION_SCAN));
+        broadcastMgr.registerReceiver(undefinedBdAddressReceiver, new IntentFilter(BleScanTask.ACTION_UNDEFINED_BDADDRESS));
 
         // BluetoothをONにする
         BleScanTask.enableBluetooth(this);
@@ -199,6 +233,25 @@ public class FullscreenActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    // 未定義BDアドレス取得用レシーバ
+    private BroadcastReceiver undefinedBdAddressReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // データ送信先フラグメントを取得
+            if (sensorSettingsFragment == null){
+                sensorSettingsFragment = findFragment(SensorSettingsFragment.class);
+            }
+            if (sensorSettingsFragment != null){
+                String[] bdAddresses = intent.getStringArrayExtra("bdAddresses");
+                if (bdAddresses != null){
+                    // 検出したセンサーのBDアドレスセットにすべて追加
+                    List<String> bdAddressList = Arrays.asList(bdAddresses);
+                    sensorSettingsFragment.addDetectedSensorBdAddressList(bdAddressList);
+                }
+            }
+        }
+    };
 
 //    private final ServiceConnection mServiceConnection = new ServiceConnection() {
 //        @Override
@@ -316,8 +369,6 @@ public class FullscreenActivity extends AppCompatActivity {
         mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         mVisible = true;
-
-
         // Schedule a runnable to display UI elements after a delay
         mHideHandler.removeCallbacks(mHidePart2Runnable);
         mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/topbar"
+    android:orientation="horizontal">
+
+    <!-- ClosedBusterロゴ表示 -->
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:cropToPadding="true"
+        android:scaleType="fitStart"
+        android:src="@drawable/logo_closedbuster" />
+
+    <!-- ifLinkロゴ表示 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:gravity="end">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/logo_iflink" />
+
+    </LinearLayout>
+
+</LinearLayout>

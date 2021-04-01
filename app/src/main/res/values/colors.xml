@@ -6,9 +6,9 @@
     <color name="topbar">#DBDBDB</color>
     <color name="horizontalBar">#A9A9A9</color>
     <color name="message">#707070</color>
-
-    <color name="darkgray">#525252</color>
+    <color name="messageDark">#525252</color>
     <color name="white">#FFFFFF</color>
+    <color name="normal">#13B55D</color>
 
     <!-- センサー状態閾値 -->
     <color name="corners_lowLabel">#50ADB5</color>
@@ -17,5 +17,8 @@
     <color name="corners_noMotion">#A9A9A9</color>
     <color name="corners_noSensor">#A9A9A9</color>
     <color name="corners_bottom">#F0F6F7</color>
+
+    <!-- 選択 -->
+    <color name="activeRow">#FFEB3B</color>
 
 </resources>

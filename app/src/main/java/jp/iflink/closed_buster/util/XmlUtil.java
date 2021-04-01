@@ -17,27 +17,27 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import jp.iflink.closed_buster.model.SensorInfo;
+import jp.iflink.closed_buster.model.SensorListItem;
 
 public class XmlUtil {
 
     private static final String TAG = "XmlUtil";
-    private static LogUseUtil logUseUtil = new LogUseUtil();
 
     // xml読み込み
     public static List<SensorInfo> readXml(Context applicationContext){
-        // ログ差込
-        ////loguseutil.specific(TAG, "XmlUtil readXml：START", "DEBUG", 3);
-
         // ファイルハンドラを生成
         FileHandler fileHandler = new FileHandler(applicationContext);
         // センサー定義ファイルを取得
         File sensorsFile = fileHandler.getFile("sensors.xml");
-
-        // ログ差込
-        ////loguseutil.specific(TAG, "XmlUtil readXml：filePath： " + file, "DEBUG", 3);
-
+        // センサーリスト
         List<SensorInfo> sensorList = new ArrayList<>();
 
         if (!sensorsFile.exists()){
@@ -80,9 +80,6 @@ public class XmlUtil {
             Log.e(TAG, e.getMessage(), e);
         }
 
-        // ログ差込
-        ////loguseutil.specific(TAG, "XmlUtil readXml：END", "DEBUG", 3);
-
         return sensorList;
     }
 
@@ -101,10 +98,6 @@ public class XmlUtil {
 
     // sensor情報の生成
     private static SensorInfo createSensor(Node sensorNode){
-
-        // ログ差込
-        ////loguseutil.specific(TAG, "XmlUtil setXml：START", "DEBUG", 3);
-
         // sensor情報
         SensorInfo sensorInfo = new SensorInfo();
 
@@ -135,10 +128,84 @@ public class XmlUtil {
             }
         }
 
-        // ログ差込
-        ////loguseutil.specific(TAG, "XmlUtil setXml：END", "DEBUG", 3);
-
         return sensorInfo;
+    }
+
+    // xml書き込み
+    public static void writeXml(Context applicationContext, List<SensorListItem> sensorList) {
+        // ファイルハンドラを生成
+        FileHandler fileHandler = new FileHandler(applicationContext);
+        // センサー定義ファイルを取得
+        File sensorsFile = fileHandler.getFile("sensors.xml");
+
+        try {
+            // DocumentBuilderを生成
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = factory.newDocumentBuilder();
+
+            // ルート要素の作成
+            Document document = documentBuilder.newDocument();
+            Element rootElement = document.createElement("sensors");
+            document.appendChild(rootElement);
+
+            for (SensorListItem sensor : sensorList){
+                // sensorノードの作成
+                Element sensorNode = createSensorNode(document, sensor);
+                // ルート要素に追加
+                rootElement.appendChild(sensorNode);
+            }
+
+            //　XMLファイルに書き込み準備
+            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+            Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","4");
+            DOMSource source = new DOMSource(document);
+            StreamResult streamResult = new StreamResult(sensorsFile);
+
+            // デバッグ用
+            //StreamResult result = new StreamResult(System.out);
+
+            //　XMLファイルに書き込み実行
+            transformer.transform(source, streamResult);
+
+        } catch (ParserConfigurationException | TransformerException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    // xmlファイル削除
+    public static void deleteXml(Context applicationContext) {
+        try {
+            // ファイルハンドラを生成
+            FileHandler fileHandler = new FileHandler(applicationContext);
+            // センサー定義ファイルを削除
+            File sensorsFile = fileHandler.getFile("sensors.xml");
+            sensorsFile.delete();
+        } catch ( Exception e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    // sensor情報の生成
+    private static Element createSensorNode(Document document, SensorListItem sensor){
+        // sensorノードの作成
+        Element sensorNode = document.createElement("sensor");
+        // sensorノードにid属性値を設定
+        sensorNode.setAttribute("id", String.valueOf(sensor.getSensorId()));
+
+        // bdaddressノードの作成
+        Element bdaddressNode = document.createElement("bdaddress");
+        bdaddressNode.appendChild(document.createTextNode(sensor.getBdAddress()));
+        sensorNode.appendChild(bdaddressNode);
+
+        // roomノードの作成
+        Element roomNode = document.createElement("room");
+        roomNode.appendChild(document.createTextNode(sensor.getRoom()));
+        sensorNode.appendChild(roomNode);
+
+        return sensorNode;
     }
 
 }
