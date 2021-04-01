@@ -2,12 +2,12 @@
 <iflink>
     <language name="jp">
         <device
-            name="ClosedBuster β3 (IAI版)"
+            name="ClosedBuster v1.1"
             dataitem="unit_id,bd_address,co2,temperature,humidity,motion,barometer"
             category="CO2濃度,気温,湿度,人感,気圧"
             icon="closedbuster.png"
             key="devicename"
-            value="jp.iflink.closed_buster:ClosedBuster:3">
+            value="jp.iflink.closed_buster:ClosedBuster:4">
             <if>
                 <condition
                     name="CO2濃度が閾値を上回ったら"
@@ -166,12 +166,12 @@
     </language>
     <language name="en">
         <device
-            name="Closed Buster beta2 (IAI)"
+            name="Closed Buster v1.1"
             dataitem="unit_id,bd_address,co2,temperature,humidity,barometer,motion"
             category="CO2,Temperature,Humidity,Motion,Barometer"
             icon="closedbuster.png"
             key="devicename"
-            value="jp.iflink.closed_buster:ClosedBuster:3">
+            value="jp.iflink.closed_buster:ClosedBuster:4">
             <if>
                 <condition
                     name="When the co2 concentration exceeds the threshold value"
