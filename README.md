@@ -1,11 +1,10 @@
 ## About ClosedBuster
 
-[English text follows the Japanese text.](#overview-1)
+[With a few exceptions, the English text is behind the whole Japanese text.](#overview-1)
 
 
 ## Overview
 CO2センサーで「密閉」を検知し、通知・換気などを行うアプリ
-
 
 ## Description
 CO2センサーからのIBI(Iflink Beacon Interface)形式のデータをBLEアドバタイズで受信し、CO2濃度を描画します。<br>
@@ -32,6 +31,9 @@ CO2濃度の他にも、気温・湿度・気圧・人感判断（人がいる�
 #### 設定画面
 <img src="screenshot/Screenshot_settings.png" width="400" alt="Screenshot (Settings Screen)"/>
 
+#### センサー管理画面
+<img src="screenshot/Screenshot_sensorsettings.png" width="400" alt="Screenshot (SensorSetting Screen)"/>
+
 
 ## Requirement
 - Android Studio 3.6.2
@@ -47,15 +49,25 @@ Gradleビルドシステムを使用しています。
 
 
 ## Usage
-事前にCO2センサーのBDアドレスと名称(room)を設定ファイルsensors.xmlに定義する必要があります。<br>
-[sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleSettings/sensors.xml)<br>
-内部ストレージの以下の場所にsensors.xmlを作成し、配置してください。<br>
-/Android/data/jp.iflink.closed_buster/files<br>
-> ※デバッグ用に未定義のセンサーを描画するモードを用意しています。<br>
+利用時は、BluetoothをONにしてください。<br>
+初回アプリを起動時、位置情報とストレージの権限をすべて許可してください。<br>
+
+事前にセンサー管理画面にてCO2センサーを登録する必要があります。
+左上のメニューボタンを押すか画面左側をスワイプしてメニューを表示し、センサー管理画面に遷移します。
+（なお、設定画面もこのメニューから遷移できます）
+> ※デバッグ用に未登録のセンサーを描画するモードを用意しています。<br>
 > 　設定画面でONにすることで、１番目のセンサーとしてデータを描画します。<br>
 > 　描画が不安定ですので、あくまでテスト用途としてご利用ください。<br>
 
-利用時は、BluetoothをONにしてください。<br>
+センサー管理画面では、再検知ボタンを押すと検知したセンサーが上部の欄に表示されます。
+タップするとダイアログが表示されるので、名称を入力してOKすると下部の欄に移動します。
+その状態で登録ボタンを押すと、センサー情報が登録されます。
+設定済みのセンサーは下部の欄から名称変更、表示順変更、削除などが可能です。
+
+> センサー情報は以下の設定ファイルに記録されています<br>
+> /Android/data/jp.iflink.closed_buster/files/sensors.xml<br>
+> [sensors.xmlの書式についてはこちらを参照](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleSettings/sensors.xml)<br>
+
 アプリを起動している間、CO2センサーからデータを受信して画面に描画すると共に、ifLinkへデータ送信し、グラフデータを5分毎に記録します。<br>
 画面描画の更新は5秒毎、ifLinkへでのデータ送信は30秒毎に行っています。<br>
 描画更新間隔およびデータ送信間隔は、設定画面から変更可能です。<br>
@@ -98,10 +110,11 @@ IBIライブラリを使用する事で、IBI形式で通信するデバイス�
 - 識別子とフラグを除いて、20byteのユーザデータを送信可能
 - データ型を指定可能（int, float, double, string, binary）
 
-ClosedBusterでは、以下のIBIフォーマットのデータを受信する仕組みとなっています。<br>
+ClosedBusterでは、デフォルトで以下のIBIフォーマットのデータを受信する仕組みとなっています。<br>
+IBIメンバーIDとIBIモジュールIDについては、設定画面から変更が可能です。<br>
 - CompanyCode: 0x09AF
-- MemberId: 0x0037
-- ModuleId: 0x0001
+- IBIメンバーID: 55
+- IBIモジュールID: 1
 
 ## About IAI (Iflink Application Interface)
 ifLinkの標準的なアプリ間通信形式です。ライブラリとIMSが公開されています。<br>
@@ -111,19 +124,20 @@ IAIライブラリを使用する事で、IAI形式で通信するアプリな�
 - IMSのプロセスがアプリの外にあるので、動作が安定している
 - IMSと違って自動起動しないので、UIのあるアプリに適している
 
-
 ## Depends
-このアプリでは以下のライブラリを使用しています。
-- Gson
-- MPAndroid Chart
-
-Android OS 7.0以降に対応しています。
-
+このアプリはAndroid OS 7.0～10.0に対応しています。
+This app is Compatible with Android OS 7.0 to 10.0.
+以下のライブラリを使用しています。
+The following libraries are used in this app.
+- Gaugelibrary v0.2.2
+- MPAndroid Chart v3.0.3
+- Gson v2.8.6
+- Commons Codec v1.3
 
 ## Sample Application
 ソースコードをビルドしたサンプルアプリケーションを登録しています。<br>
-[SampleApplication/ClosedBuster_v100.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleApplication/ClosedBuster_v100.apk)
-
+Here is a sample applicaiotn apk which built from the source code.<br>
+[SampleApplication/ClosedBuster_v110.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleApplication/ClosedBuster_v110.apk)
 
 ## Community
 リクエスト、質問、バグリポートがある場合、GitHubのissue機能を使用して下さい。
@@ -136,7 +150,10 @@ Android OS 7.0以降に対応しています。
 
 
 ## Build
-
+The Gradle build system is used.
+1. Launch Android Studio and select a folder under "Open an existing Android Studio project".
+2. Build your app with "Make Project".
+3. "Run 'app'" to run the app.
 
 ## Usage
 
@@ -147,13 +164,8 @@ Android OS 7.0以降に対応しています。
 ## About IAI (Iflink Application Interface)
 
 
-## Depends
-
-
-## Sample Application
-
-
 ## Community
+If you have a request, question, or bug report, please use the issue feature on GitHub.
 
 
 ## License
