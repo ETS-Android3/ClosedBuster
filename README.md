@@ -162,16 +162,17 @@ The Gradle build system is used.
 3. "Run 'app'" to run the app.
 
 
+## Usage
 Please turn on Bluetooth when you use it.<br>
 When launching the app for the first time, please allow all location and storage permissions.<br>
-By default, the layout mode is set to 10-inch tablet, so please change the layout mode from the Setting screen when using a smartphone.<br>
+By default, the layout mode is set to 10" tablet, so please change the layout mode from the Setting screen when using a smartphone.<br>
 
 You have to register the CO2 sensor on the Sensor setting screen in advance.<br>
 Press the menu button in the upper left corner or swipe the left side of the screen to display the menu and go to the Sensor setting screen.<br>
 (You can also access the Setting screen from this menu)<br>
-> *A mode to draw unregistered sensors is provided for debugging purposes.<br>
->  By turning it on in the Setting screen, the data will be drawn as the first sensor.<br>
->  But the rendering is unstable, so please use it only for validation.<br>
+> A mode to draw unregistered sensors is provided for debugging purposes.<br>
+> By turning it on in the Setting screen, the data will be drawn as the first sensor.<br>
+> But the rendering is unstable, so please use it only for validation.<br>
 
 In the Sensor setting screen, tap Detect button to show the detected sensors in the upper field.<br>
 When you tap a sensor, a dialog will appear. Enter its name and OK to sensor moves to the bottom field.<br>
