@@ -71,8 +71,8 @@
     </string-array>
     <string name="screen_update_interval">描画更新間隔 [秒]</string>
     <string name="screen_update_interval_dialog">画面の描画を更新する間隔</string>
-    <string name="motion_off_minutes">人感OFF判定時間 [分]</string>
-    <string name="motion_off_minutes_dialog">人感OFFを指定した時間継続して受信した時に判定</string>
+    <string name="motion_off_minutes">人感無し判定時間 [分]</string>
+    <string name="motion_off_minutes_dialog">人感無しを指定した時間継続して受信した時に判定</string>
     <string name="keep_data_minutes">センサーOFF判定時間 [分]</string>
     <string name="keep_data_minutes_dialog">指定した時間センサーデータを受信しなかった時に判定</string>
     <string name="runin_background">バックグラウンドで動作</string>
