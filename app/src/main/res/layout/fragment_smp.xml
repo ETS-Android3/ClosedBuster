@@ -306,8 +306,7 @@
                                 android:id="@+id/tv_recordtime_block"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginStart="5dp"
                                 android:orientation="horizontal"
                                 android:visibility="invisible">
 
@@ -316,6 +315,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="3dp"
+                                    android:layout_marginTop="8dp"
                                     android:text="@string/recordtime"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
@@ -325,16 +325,103 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5dp"
+                                    android:layout_marginTop="8dp"
                                     android:text="HH:mm:ss"
                                     android:textSize="12sp"
                                     android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_marginTop="5dp"
+                                    android:gravity="right"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:cropToPadding="true"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_icon_temperature"
+                                        android:tint="@color/message" />
+
+                                    <TextView
+                                        android:id="@+id/tv_co2_temperature_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="false"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:minWidth="35dp"
+                                        android:textColor="@color/message"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        app:autoSizeMaxTextSize="16sp"
+                                        app:autoSizeMinTextSize="12sp"
+                                        app:autoSizeTextType="uniform" />
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_gravity="center"
+                                        android:cropToPadding="true"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_icon_humidity"
+                                        android:tint="@color/message" />
+
+                                    <TextView
+                                        android:id="@+id/tv_co2_humidity_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:minWidth="45dp"
+                                        android:textColor="@color/message"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        app:autoSizeMaxTextSize="16sp"
+                                        app:autoSizeMinTextSize="12sp"
+                                        app:autoSizeTextType="uniform" />
+
+                                    <ImageView
+                                        android:layout_width="22dp"
+                                        android:layout_height="25dp"
+                                        android:cropToPadding="true"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_icon_barometer"
+                                        android:tint="@color/message" />
+
+                                    <TextView
+                                        android:id="@+id/tv_co2_barometer_1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="false"
+                                        android:layout_marginRight="3dp"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:minWidth="55dp"
+                                        android:textColor="@color/message"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold"
+                                        app:autoSizeMaxTextSize="16sp"
+                                        app:autoSizeMinTextSize="12sp"
+                                        app:autoSizeTextType="uniform" />
+
+                                    <ImageView
+                                        android:id="@+id/img_icon_motion_1"
+                                        android:layout_width="20dp"
+                                        android:layout_height="20dp"
+                                        android:cropToPadding="true"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/ic_icon_human"
+                                        android:tint="@color/corners_noMotion" />
+
+                                </LinearLayout>
 
                             </LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:layout_marginTop="8dp"
+                                android:layout_marginTop="5dp"
                                 android:background="@color/horizontalBar" />
 
                         </LinearLayout>
@@ -429,76 +516,6 @@
                             android:textColor="@color/white"
                             android:textSize="20sp"
                             android:textStyle="bold" />
-
-                        <!-- 気温・湿度・気圧 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="80dp"
-                            android:gravity="end"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:id="@+id/img_icon_temperature_1"
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                android:layout_gravity="center"
-                                android:cropToPadding="true"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_icon_temperature" />
-
-                            <TextView
-                                android:id="@+id/tv_co2_temperature_1"
-                                android:layout_width="58dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
-                                android:layout_gravity="center"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/white"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:id="@+id/img_icon_humidity_1"
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                android:cropToPadding="true"
-                                android:scaleType="fitCenter"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_icon_humidity" />
-
-                            <TextView
-                                android:id="@+id/tv_co2_humidity_1"
-                                android:layout_width="58dp"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/white"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:id="@+id/img_icon_barometer_1"
-                                android:layout_width="26dp"
-                                android:layout_height="26dp"
-                                android:cropToPadding="true"
-                                android:scaleType="fitCenter"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_icon_barometer" />
-
-                            <TextView
-                                android:id="@+id/tv_co2_barometer_1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
-                                android:layout_gravity="center"
-                                android:fontFamily="sans-serif-medium"
-                                android:paddingLeft="8dp"
-                                android:textColor="@color/white"
-                                android:textSize="20sp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
 
                     </LinearLayout>
 

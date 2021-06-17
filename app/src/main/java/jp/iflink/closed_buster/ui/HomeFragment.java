@@ -52,7 +52,6 @@ import jp.iflink.closed_buster.setting.AppLayoutType;
 import jp.iflink.closed_buster.setting.Co2Rank;
 import jp.iflink.closed_buster.model.SensorData;
 import jp.iflink.closed_buster.util.DataStore;
-import jp.iflink.closed_buster.util.LogUseUtil;
 import jp.iflink.closed_buster.util.XmlUtil;
 
 public class HomeFragment extends Fragment implements ISensorFragment {
@@ -95,6 +94,8 @@ public class HomeFragment extends Fragment implements ISensorFragment {
     private TextView mCo2SensorBarometer1;
     // センサー1 人感
     private LinearLayout mCo2SensorMotion1;
+    // センサー1 人感（スマホ版）
+    private ImageView mCo2SensorMotionImg1;
 
     // センサー2 CO2濃度
     private TextView mCo2SensorTitle2;
@@ -240,6 +241,8 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         mCo2SensorBarometer1 = root.findViewById(R.id.tv_co2_barometer_1);
         // センサー1 人感
         mCo2SensorMotion1 = root.findViewById(R.id.tv_co2_motion_1);
+        // センサー1 人感（スマホ版）
+        mCo2SensorMotionImg1 = root.findViewById(R.id.img_icon_motion_1);
 
         // センサー2 CO2濃度
         mCo2SensorTitle2 = root.findViewById(R.id.tv_sensortitle_2);
@@ -281,7 +284,7 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         target = new GlideDrawableImageViewTarget(imageView);
         Glide.with(getActivity()).load(R.raw.splash).into(target);
         // 最大CO2濃度の表示
-        mImgCover.setVisibility(mImgCover.VISIBLE);
+        mImgCover.setVisibility(View.VISIBLE);
         // 最新のセンサー情報をクリア
         lastMaxCo2 = 0;
         lastMaxCo2Rank = null;
@@ -413,6 +416,7 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         TextView mCo2SensorBarometer = null;
         TextView mCo2ConcentrationResult = null;
         LinearLayout mCo2SensorMotion = null;
+        ImageView mCo2SensorMotionImg = null;
 
         // 各種判定フラグ
         boolean hasSensorData = false;
@@ -428,6 +432,7 @@ public class HomeFragment extends Fragment implements ISensorFragment {
             mCo2SensorBarometer = mCo2SensorBarometer1;
             mCo2ConcentrationResult = mCo2ConcentrationResult1;
             mCo2SensorMotion = mCo2SensorMotion1;
+            mCo2SensorMotionImg = mCo2SensorMotionImg1;
 
         } else if(xmlCo2Id == 2  && co2 >= 0) {
             // 2個目の箱の場合
@@ -516,13 +521,25 @@ public class HomeFragment extends Fragment implements ISensorFragment {
                 // バーの色の変更
                 if (co2Rank == Co2Rank.LOW) {
                     mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_low);
+                    if (mCo2SensorMotionImg != null){
+                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_lowLabel));
+                    }
                 } else if (co2Rank == Co2Rank.MIDDLE) {
                     mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_middle);
+                    if (mCo2SensorMotionImg != null){
+                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_middleLabel));
+                    }
                 } else if (co2Rank == Co2Rank.HIGH) {
                     mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_high);
+                    if (mCo2SensorMotionImg != null){
+                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_highLabel));
+                    }
                 }
             } else {
                 mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_nomotion);
+                if (mCo2SensorMotionImg != null){
+                    mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_noMotion));
+                }
             }
         }
     }

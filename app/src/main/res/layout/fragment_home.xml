@@ -473,6 +473,17 @@
                                     android:textColor="@color/white"
                                     android:textSize="20sp"
                                     android:textStyle="bold" />
+
+                                <ImageView
+                                    android:id="@+id/img_icon_motion_1"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:cropToPadding="true"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/ic_icon_human"
+                                    android:tint="@color/corners_noMotion"
+                                    android:visibility="gone" />
+
                             </LinearLayout>
 
                         </LinearLayout>
