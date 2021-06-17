@@ -128,6 +128,8 @@ public class HomeFragment extends Fragment implements ISensorFragment {
     private int CO2_LOW_PPM;
     // アプリレイアウト種別
     private AppLayoutType appLayoutType;
+    // アニメーション描画有無
+    private boolean DRAW_ANIMATION;
 
     // センサーリスト
     private List<SensorInfo> mSensorList;
@@ -185,6 +187,8 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         // CO2濃度閾値を取得
         this.CO2_HIGH_PPM = getIntFromString(prefs, "co2_high_ppm", rsrc.getInteger(R.integer.default_co2_high_ppm));
         this.CO2_LOW_PPM = getIntFromString(prefs, "co2_low_ppm", rsrc.getInteger(R.integer.default_co2_low_ppm));
+        // アニメーション描画有無を取得
+        this.DRAW_ANIMATION = getBoolean(prefs, "draw_animation", rsrc.getBoolean(R.bool.default_draw_animation));
 
         // Inflate the layout for this fragment
         View root;
@@ -281,8 +285,13 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         ImageView imageView = root.findViewById(R.id.gifImage);
         mMessage.setImageResource(R.drawable.message_low);
         imageView.setBackgroundColor(rsrc.getColor(R.color.corners_lowLabel));
-        target = new GlideDrawableImageViewTarget(imageView);
-        Glide.with(getActivity()).load(R.raw.splash).into(target);
+        if (DRAW_ANIMATION){
+            target = new GlideDrawableImageViewTarget(imageView);
+            Glide.with(getActivity()).load(R.raw.splash).into(target);
+        } else {
+            imageView.setImageBitmap(null);
+            imageView.setVisibility(View.INVISIBLE);
+        }
         // 最大CO2濃度の表示
         mImgCover.setVisibility(View.VISIBLE);
         // 最新のセンサー情報をクリア
@@ -674,13 +683,18 @@ public class HomeFragment extends Fragment implements ISensorFragment {
             // CO2濃度が「低」かつ 前回が「低」でない場合
             mImgCover.setVisibility(ImageView.INVISIBLE);
             ImageView imageView = progressView.findViewById(R.id.gifImage);
-            mMessage.setImageResource(R.drawable.message_low);
             imageView.setBackgroundColor(rsrc.getColor(R.color.corners_lowLabel));
-            imageView.setVisibility(ImageView.VISIBLE);
+            mMessage.setImageResource(R.drawable.message_low);
 
-            if(target == null){
-                target = new GlideDrawableImageViewTarget(imageView);
-                Glide.with(getActivity()).load(R.raw.splash).into(target);
+            if (DRAW_ANIMATION){
+                imageView.setVisibility(ImageView.VISIBLE);
+                if(target == null){
+                    target = new GlideDrawableImageViewTarget(imageView);
+                    Glide.with(getActivity()).load(R.raw.splash).into(target);
+                }
+            } else {
+                imageView.setImageBitmap(null);
+                imageView.setVisibility(View.INVISIBLE);
             }
 
             // 文言の変更

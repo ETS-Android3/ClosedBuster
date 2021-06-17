@@ -54,7 +54,7 @@ public class SettingsFragment extends PreferenceFragmentCompat
         Map<String,?> prefMap = prefs.getAll();
         Map<String,Boolean> newValueMap = new HashMap<>();
         // boolean型設定項目に対して処理
-        for (String key : new String[]{"runin_background","logging_ble_scan","draw_unknown_sensor"}){
+        for (String key : new String[]{"runin_background","logging_ble_scan","draw_unknown_sensor","draw_animation"}){
             Object value = prefMap.get(key);
             if (value instanceof String){
                 newValueMap.put(key, Boolean.valueOf((String)value));

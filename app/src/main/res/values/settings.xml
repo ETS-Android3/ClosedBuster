@@ -12,6 +12,7 @@
     <integer name="default_screen_update_interval">10</integer>
     <integer name="default_send_data_interval">30</integer>
     <bool name="default_runin_background">false</bool>
+    <bool name="default_draw_animation">true</bool>
     <integer name="default_graph_count_minutes">60</integer>
     <integer name="default_graph_scalemarks">3</integer>
     <!-- デフォルト値設定(sensor data) -->

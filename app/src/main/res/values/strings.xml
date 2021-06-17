@@ -77,6 +77,7 @@
     <string name="screen_update_interval">Screen update Interval [sec]</string>
     <string name="screen_update_interval_dialog">Interval to update the screen drawing</string>
     <string name="runin_background">Run in background</string>
+    <string name="draw_animation">Enable animation</string>
     <string name="graph_setting">--- Graph Setting ---</string>
     <string name="graph_scalemarks">Num of Scale Marks *TBI</string>
     <string name="graph_scalemarks_dialog">Number of Scale Marks to be drawn on Y-Axis</string>

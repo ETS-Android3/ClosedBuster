@@ -76,6 +76,7 @@
     <string name="keep_data_minutes">センサーOFF判定時間 [分]</string>
     <string name="keep_data_minutes_dialog">指定した時間センサーデータを受信しなかった時に判定</string>
     <string name="runin_background">バックグラウンドで動作</string>
+    <string name="draw_animation">アニメーション有効</string>
     <string name="graph_setting">●グラフ設定</string>
     <string name="graph_scalemarks">目盛線の数 ※対応中</string>
     <string name="graph_scalemarks_dialog">Y軸に描画される目盛線の数</string>

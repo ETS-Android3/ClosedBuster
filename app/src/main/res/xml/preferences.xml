@@ -73,6 +73,10 @@
             android:selectAllOnFocus="true"
             android:dialogTitle="@string/keep_data_minutes_dialog"
             app:useSimpleSummaryProvider="true"/>
+        <SwitchPreferenceCompat
+            android:key="draw_animation"
+            android:title="@string/draw_animation"
+            android:defaultValue="@bool/default_draw_animation"/>
     </PreferenceCategory>
     <!--<PreferenceCategory android:title="@string/graph_setting">
         <EditTextPreference
