@@ -531,22 +531,26 @@ public class HomeFragment extends Fragment implements ISensorFragment {
                 if (co2Rank == Co2Rank.LOW) {
                     mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_low);
                     if (mCo2SensorMotionImg != null){
-                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_lowLabel));
+                        mCo2SensorMotionImg.setBackgroundResource(R.drawable.ic_icon_human);
+                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.message));
                     }
                 } else if (co2Rank == Co2Rank.MIDDLE) {
                     mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_middle);
                     if (mCo2SensorMotionImg != null){
-                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_middleLabel));
+                        mCo2SensorMotionImg.setBackgroundResource(R.drawable.ic_icon_human);
+                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.message));
                     }
                 } else if (co2Rank == Co2Rank.HIGH) {
                     mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_high);
                     if (mCo2SensorMotionImg != null){
-                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_highLabel));
+                        mCo2SensorMotionImg.setBackgroundResource(R.drawable.ic_icon_human);
+                        mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.message));
                     }
                 }
             } else {
                 mCo2SensorMotion.setBackgroundResource(R.drawable.shape_rounded_corners_top_nomotion);
                 if (mCo2SensorMotionImg != null){
+                    mCo2SensorMotionImg.setBackgroundResource(R.drawable.ic_icon_human_nomotion);
                     mCo2SensorMotionImg.getDrawable().setTint(rsrc.getColor(R.color.corners_noMotion));
                 }
             }

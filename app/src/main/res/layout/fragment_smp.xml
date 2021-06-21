@@ -407,7 +407,7 @@
                                         android:layout_gravity="top"
                                         android:cropToPadding="true"
                                         android:scaleType="fitXY"
-                                        android:src="@drawable/ic_icon_human"
+                                        android:src="@drawable/ic_icon_human_nomotion"
                                         android:tint="@color/corners_noMotion" />
 
                                 </LinearLayout>
