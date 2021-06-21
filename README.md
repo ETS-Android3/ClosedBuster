@@ -136,10 +136,10 @@ The following libraries are used in this app.<br>
 - Gson v2.8.6
 - Commons Codec v1.3
 
-## Sample Application
-ソースコードをビルドしたサンプルアプリケーションを登録しています。<br>
-Here is a sample applicaiotn apk which built from the source code.<br>
-[SampleApplication/ClosedBuster_v112.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/raw/main/SampleApplication/ClosedBuster_v112.apk)
+## Released Application
+ソースをビルドしたAPKファイルは以下からDLできます。<br>
+Here is a apk file which built from the source code.<br>
+[Releases/download/ClosedBuster_v112.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/releases/download/v1.1.2/ClosedBuster_v112.apk)
 
 ## Community
 リクエスト、質問、バグリポートがある場合、GitHubのissue機能を使用して下さい。
