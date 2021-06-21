@@ -194,7 +194,7 @@ The lower half of the screen shows the CO2 concentration of the individual senso
 In addition, a line graph of the transition of CO2 concentration for the last hour is shown.<br>
 The graph has a green line for the actual value and an orange auxiliary line for the threshold value, and when this auxiliary line is crossed, it is time to ventilate and a message is displayed to encourage ventilation.<br>
 When the motion detected then the title bar is colored, and no motion detected and 1 minute has passed then the title bar is grayed out to let you know.<br>
-(indicated by a human-shaped icon when the smartphone layout. As filled icon when the motion detected, as only an outline icon when no motion detected.)<br>
+(indicated by a human-shaped icon when the smartphone layout. As a filled icon when the motion detected, as only an outline icon when no motion detected.)<br>
 Time to judge as no motion (1 minute) can be changed from the Setting screen.<br>
 
 The upper half of the screen shows the highest sensor value of CO2 concentration among all sensors, and its rating of "High","Middle" and "Low" and status are displayed so that they can be understood at a glance.<br>
