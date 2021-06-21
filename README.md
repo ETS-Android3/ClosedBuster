@@ -79,6 +79,7 @@ Gradleビルドシステムを使用しています。
 また、直近１時間のCO2濃度の推移を折れ線グラフで表示しています。<br>
 グラフには実際の数値が緑色の線で、閾値となる補助線がオレンジ色で引かれており、この補助線を超えると換気のタイミングとなり、換気を促すメッセージを表示する仕組みです。<br>
 人感ありの時はタイトルバーの部分に色を付け、人感無しで1分経つとタイトルバーを灰色にして知らせるようにしています。<br>
+（スマートフォンの表示モードでは、人型のアイコンで示しています。人感ありの時は塗りつぶされたアイコン、人感無しの時は輪郭だけのアイコンで表示します。）<br>
 人感無し判定時間(1分)は設定画面から変更可能です。<br>
 
 画面上半分にはCO2濃度が一番高いセンサー値を表示しており、「高」「中」「低」の評価と状態がひと目で判るように表示しています。<br>
@@ -193,6 +194,7 @@ The lower half of the screen shows the CO2 concentration of the individual senso
 In addition, a line graph of the transition of CO2 concentration for the last hour is shown.<br>
 The graph has a green line for the actual value and an orange auxiliary line for the threshold value, and when this auxiliary line is crossed, it is time to ventilate and a message is displayed to encourage ventilation.<br>
 When the motion detected then the title bar is colored, and no motion detected and 1 minute has passed then the title bar is grayed out to let you know.<br>
+(indicated by a human-shaped icon when the smartphone layout. As filled icon when the motion detected, as only an outline icon when no motion detected.)<br>
 Time to judge as no motion (1 minute) can be changed from the Setting screen.<br>
 
 The upper half of the screen shows the highest sensor value of CO2 concentration among all sensors, and its rating of "High","Middle" and "Low" and status are displayed so that they can be understood at a glance.<br>
