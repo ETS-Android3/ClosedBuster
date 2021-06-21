@@ -138,7 +138,7 @@ The following libraries are used in this app.<br>
 
 ## Released Application
 ソースをビルドしたAPKファイルは以下からDLできます。<br>
-Here is a apk file which built from the source code.<br>
+Here is an apk file which built from the source code.<br>
 [Releases/download/ClosedBuster_v112.apk](https://github.com/ifLinkOpenCommunity/ClosedBuster/releases/download/v1.1.2/ClosedBuster_v112.apk)
 
 ## Community
