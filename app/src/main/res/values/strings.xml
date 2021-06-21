@@ -5,7 +5,7 @@
     <string name="setting_activity">ClosedBuster IMS Settings</string>
     <string name="nav_header_subtitle">ifLink Open Community</string>
     <!-- ホーム画面 -->
-    <string name="recordtime">Updated</string>
+    <string name="recordtime">Updated %s</string>
     <string name="description_header">Monitor the CO2 concentration and prevent \"CLOSING\"</string>
     <string name="description_header1">Monitor the CO2 concentration</string>
     <string name="description_header2">and prevent \"CLOSING\"</string>

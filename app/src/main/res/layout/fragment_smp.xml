@@ -98,9 +98,9 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <!-- 最大値メーター表示図 -->
                 <LinearLayout
@@ -311,31 +311,26 @@
                                 android:visibility="invisible">
 
                                 <TextView
-                                    android:id="@+id/tv_recordtime_prefix"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tv_recordtime"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
                                     android:layout_marginLeft="3dp"
                                     android:layout_marginTop="8dp"
-                                    android:text="@string/recordtime"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/tv_recordtime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_marginTop="8dp"
-                                    android:text="HH:mm:ss"
-                                    android:textSize="12sp"
-                                    android:textStyle="bold" />
+                                    android:layout_weight="2"
+                                    android:text="Updated HH:mm:ss"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    app:autoSizeMaxTextSize="16sp"
+                                    app:autoSizeMinTextSize="12sp"
+                                    app:autoSizeTextType="uniform" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
                                     android:layout_marginTop="5dp"
-                                    android:gravity="right"
+                                    android:layout_weight="1"
+                                    android:gravity="bottom|right"
                                     android:orientation="horizontal">
 
                                     <ImageView
@@ -350,7 +345,6 @@
                                         android:id="@+id/tv_co2_temperature_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="false"
                                         android:fontFamily="sans-serif-medium"
                                         android:minWidth="35dp"
                                         android:textColor="@color/message"
@@ -363,7 +357,7 @@
                                     <ImageView
                                         android:layout_width="22dp"
                                         android:layout_height="22dp"
-                                        android:layout_gravity="center"
+                                        android:layout_gravity="bottom|center"
                                         android:cropToPadding="true"
                                         android:scaleType="fitXY"
                                         android:src="@drawable/ic_icon_humidity"
@@ -374,7 +368,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="sans-serif-medium"
-                                        android:minWidth="45dp"
+                                        android:minWidth="40dp"
                                         android:textColor="@color/message"
                                         android:textSize="16sp"
                                         android:textStyle="bold"
@@ -384,9 +378,11 @@
 
                                     <ImageView
                                         android:layout_width="22dp"
-                                        android:layout_height="25dp"
+                                        android:layout_height="22dp"
+                                        android:layout_gravity="bottom"
                                         android:cropToPadding="true"
                                         android:scaleType="fitXY"
+                                        android:scaleY="1.5"
                                         android:src="@drawable/ic_icon_barometer"
                                         android:tint="@color/message" />
 
@@ -394,7 +390,6 @@
                                         android:id="@+id/tv_co2_barometer_1"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="false"
                                         android:layout_marginRight="3dp"
                                         android:fontFamily="sans-serif-medium"
                                         android:minWidth="55dp"
@@ -409,6 +404,7 @@
                                         android:id="@+id/img_icon_motion_1"
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
+                                        android:layout_gravity="top"
                                         android:cropToPadding="true"
                                         android:scaleType="fitXY"
                                         android:src="@drawable/ic_icon_human"
@@ -455,10 +451,10 @@
 
                         <ImageView
                             android:id="@+id/gifImage"
-                            android:layout_marginLeft="14dp"
-                            android:layout_marginTop="50dp"
                             android:layout_width="70dp"
-                            android:layout_height="70dp" />
+                            android:layout_height="70dp"
+                            android:layout_marginLeft="14dp"
+                            android:layout_marginTop="50dp" />
                         <!--                            //android:background="@col/or/lowLabel"-->
 
                         <LinearLayout
@@ -466,7 +462,7 @@
                             android:layout_width="415dp"
                             android:layout_height="150dp"
                             android:background="@color/white"
-                            android:orientation="horizontal"/>
+                            android:orientation="horizontal" />
                         <!--                            android:layout_width="425dp"-->
                         <!--                            android:layout_height="200dp"-->
 
@@ -499,11 +495,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rounded_corners_top_nosensor"
+                        android:orientation="horizontal"
                         android:paddingLeft="30dp"
-                        android:paddingEnd="30dp"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:orientation="horizontal">
+                        android:paddingEnd="30dp"
+                        android:paddingBottom="8dp">
 
                         <TextView
                             android:id="@+id/tv_sensortitle_1"
@@ -523,10 +519,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:background="@drawable/shape_rounded_corners_bottom"
-                        android:padding="15dp"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
 
                         <!-- 測定結果 -->
                         <TextView
@@ -535,10 +531,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="sans-serif-medium"
-                            android:paddingTop="35dp"
-                            android:paddingBottom="35dp"
                             android:paddingLeft="15dp"
+                            android:paddingTop="35dp"
                             android:paddingRight="5dp"
+                            android:paddingBottom="35dp"
                             android:textColor="@color/corners_noMotion"
                             android:textSize="50sp"
                             android:textStyle="bold" />
@@ -547,15 +543,14 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
-                            android:layout_gravity="center">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tv_co2_concentration_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
                                 android:fontFamily="sans-serif-medium"
                                 android:paddingLeft="20dp"
                                 android:paddingTop="20dp"
@@ -570,7 +565,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
                                 android:fontFamily="sans-serif-medium"
                                 android:paddingLeft="20dp"
                                 android:paddingTop="0dp"
@@ -599,8 +593,8 @@
                     android:id="@+id/tv_co2_2_block"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_marginLeft="40dp"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <!-- トップバー表示 -->
@@ -609,11 +603,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/shape_rounded_corners_top_nosensor"
+                        android:orientation="horizontal"
                         android:paddingLeft="30dp"
-                        android:paddingEnd="30dp"
                         android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:orientation="horizontal">
+                        android:paddingEnd="30dp"
+                        android:paddingBottom="8dp">
 
                         <TextView
                             android:id="@+id/tv_sensortitle_2"
@@ -649,7 +643,6 @@
                                 android:id="@+id/tv_co2_temperature_2"
                                 android:layout_width="58dp"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
                                 android:layout_gravity="center"
                                 android:fontFamily="sans-serif-medium"
                                 android:textColor="@color/white"
@@ -660,9 +653,9 @@
                                 android:id="@+id/img_icon_humidity_2"
                                 android:layout_width="26dp"
                                 android:layout_height="26dp"
+                                android:layout_gravity="center"
                                 android:cropToPadding="true"
                                 android:scaleType="fitCenter"
-                                android:layout_gravity="center"
                                 android:src="@drawable/ic_icon_humidity" />
 
                             <TextView
@@ -679,16 +672,15 @@
                                 android:id="@+id/img_icon_barometer_2"
                                 android:layout_width="26dp"
                                 android:layout_height="26dp"
+                                android:layout_gravity="center"
                                 android:cropToPadding="true"
                                 android:scaleType="fitCenter"
-                                android:layout_gravity="center"
                                 android:src="@drawable/ic_icon_barometer" />
 
                             <TextView
                                 android:id="@+id/tv_co2_barometer_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
                                 android:layout_gravity="center"
                                 android:fontFamily="sans-serif-medium"
                                 android:paddingLeft="8dp"
@@ -703,10 +695,10 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:background="@drawable/shape_rounded_corners_bottom"
-                        android:padding="15dp"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
 
                         <!-- 測定結果 -->
                         <TextView
@@ -715,10 +707,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="sans-serif-medium"
-                            android:paddingTop="35dp"
-                            android:paddingBottom="35dp"
                             android:paddingLeft="15dp"
+                            android:paddingTop="35dp"
                             android:paddingRight="5dp"
+                            android:paddingBottom="35dp"
                             android:textColor="@color/corners_noSensor"
                             android:textSize="50sp"
                             android:textStyle="bold" />
@@ -727,15 +719,14 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
+                            android:layout_gravity="center"
                             android:layout_marginLeft="10dp"
-                            android:layout_gravity="center">
+                            android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/tv_co2_concentration_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
                                 android:fontFamily="sans-serif-medium"
                                 android:paddingLeft="20dp"
                                 android:paddingTop="20dp"
@@ -750,7 +741,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="false"
                                 android:fontFamily="sans-serif-medium"
                                 android:paddingLeft="20dp"
                                 android:paddingTop="0dp"

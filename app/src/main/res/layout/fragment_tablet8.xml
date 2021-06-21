@@ -326,20 +326,11 @@
                                 android:visibility="invisible">
 
                                 <TextView
-                                    android:id="@+id/tv_recordtime_prefix"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:text="@string/recordtime"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                                <TextView
                                     android:id="@+id/tv_recordtime"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:text="HH:mm:ss"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Updated HH:mm:ss"
                                     android:textSize="14sp"
                                     android:textStyle="bold" />
 

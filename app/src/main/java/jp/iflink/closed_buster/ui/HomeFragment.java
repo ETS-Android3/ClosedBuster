@@ -766,7 +766,7 @@ public class HomeFragment extends Fragment implements ISensorFragment {
          // 画面上部のメインのセンサーデータの描画
          drawMainSensorData();
          // 前回更新時刻を更新
-         mRecordTime.setText(getDateTimeText(lastDataTime));
+         mRecordTime.setText(getResources().getString(R.string.recordtime, getDateTimeText(lastDataTime)));
          mRecordTimeBlock.setVisibility(View.VISIBLE);
 
     }

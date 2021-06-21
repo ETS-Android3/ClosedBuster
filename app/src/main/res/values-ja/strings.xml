@@ -5,7 +5,7 @@
     <string name="setting_activity">ClosedBuster IMS設定メニュー</string>
     <string name="nav_header_subtitle">ifLink Open Community</string>
     <!-- ホーム画面 -->
-    <string name="recordtime">更新時刻</string>
+    <string name="recordtime">更新時刻 %s</string>
     <string name="description_header">CO2濃度を監視して「密閉」を防止しています</string>
     <string name="description_header1">CO2濃度を監視して</string>
     <string name="description_header2">「密閉」を防止しています</string>
