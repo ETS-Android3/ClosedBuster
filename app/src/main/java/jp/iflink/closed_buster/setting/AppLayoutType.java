@@ -25,7 +25,10 @@ public enum AppLayoutType {
         if (TABLET_8.type.equals(type)){
             return TABLET_8;
         }
-        return TABLET_10;
+        if (TABLET_10.type.equals(type)){
+            return TABLET_10;
+        }
+        return null;
     }
 
     public static AppLayoutType of(String type){
@@ -35,5 +38,9 @@ public enum AppLayoutType {
             }
         }
         return null;
+    }
+
+    public boolean isTabletType(){
+        return this == TABLET_8 || this == TABLET_10;
     }
 }

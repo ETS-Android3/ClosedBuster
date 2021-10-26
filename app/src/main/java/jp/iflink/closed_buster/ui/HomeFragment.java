@@ -6,21 +6,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
 
 import androidx.annotation.ColorInt;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.preference.PreferenceManager;
 
 import android.os.Handler;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -53,6 +54,8 @@ import jp.iflink.closed_buster.setting.Co2Rank;
 import jp.iflink.closed_buster.model.SensorData;
 import jp.iflink.closed_buster.util.DataStore;
 import jp.iflink.closed_buster.util.XmlUtil;
+
+import static android.content.Context.WINDOW_SERVICE;
 
 public class HomeFragment extends Fragment implements ISensorFragment {
     private static final String TAG = "Home";
@@ -183,12 +186,40 @@ public class HomeFragment extends Fragment implements ISensorFragment {
         // アプリ共通設定
         Resources rsrc = getResources();
         // アプリのレイアウト種別を取得
-        this.appLayoutType = AppLayoutType.judge(prefs.getString("app_layout_type", rsrc.getString(R.string.default_app_layout_type)));
+        AppLayoutType appLayoutType = AppLayoutType.judge(prefs.getString("app_layout_type", null));
         // CO2濃度閾値を取得
         this.CO2_HIGH_PPM = getIntFromString(prefs, "co2_high_ppm", rsrc.getInteger(R.integer.default_co2_high_ppm));
         this.CO2_LOW_PPM = getIntFromString(prefs, "co2_low_ppm", rsrc.getInteger(R.integer.default_co2_low_ppm));
         // アニメーション描画有無を取得
         this.DRAW_ANIMATION = getBoolean(prefs, "draw_animation", rsrc.getBoolean(R.bool.default_draw_animation));
+
+        if (appLayoutType == null){
+            //  未設定の場合、画面サイズからレイアウト種別を自動判定する
+            Point info = getScreenSize();
+            if (info != null) {
+                Log.d(TAG, "screen width="+info.x+" height="+info.y);
+                // 取得した画面サイズの短辺を取得
+                int shortSide = Math.min(info.x, info.y);
+                if(shortSide <= 599){
+                    // 短辺が599dp以下ならスマホとする
+                    appLayoutType = AppLayoutType.SMARTPHONE;
+                }else if(shortSide <= 710) {
+                    // 710dp以下の場合は8インチタブレットとする
+                    appLayoutType = AppLayoutType.TABLET_8;
+                }else{
+                    // 711dp以上の場合は10インチタブレットとする
+                    appLayoutType = AppLayoutType.TABLET_10;
+                }
+            } else {
+                // 画面サイズを取得できなかった場合はデフォルトのレイアウト種別とする
+                appLayoutType = AppLayoutType.judge(rsrc.getString(R.string.default_app_layout_type));
+            }
+            // アプリのレイアウト種別の設定を保存
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("app_layout_type", appLayoutType.type());
+            editor.commit();
+        }
+        this.appLayoutType = appLayoutType;
 
         // Inflate the layout for this fragment
         View root;
@@ -802,6 +833,22 @@ public class HomeFragment extends Fragment implements ISensorFragment {
             recordTimeTimer = null;
         }
         mGraphManager.removeAllLineChart();
+    }
+
+    private Point getScreenSize(){
+        final float density = getResources().getDisplayMetrics().density;
+        WindowManager wm = (WindowManager)getActivity().getSystemService(WINDOW_SERVICE);
+        if(wm == null) {
+            return null;
+        }
+        Display display = wm.getDefaultDisplay();
+        Point realSize = new Point();
+        display.getRealSize(realSize);
+
+        int rswDp = (int)(realSize.x/density);
+        int rshDp = (int)(realSize.y/density);
+        Point info = new Point(rswDp, rshDp);
+        return info;
     }
 
     private int getDelayMillisToNextMinute(){

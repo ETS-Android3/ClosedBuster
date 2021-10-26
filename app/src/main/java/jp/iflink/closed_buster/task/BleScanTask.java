@@ -179,7 +179,12 @@ public class BleScanTask implements Runnable {
             }, timerDelay, 1000 * 60, TimeUnit.MILLISECONDS);
         }
 
-        if (routine5mFuture == null && appLayoutType != AppLayoutType.SMARTPHONE) {
+        if (appLayoutType == null){
+            // アプリのレイアウト種別を取得
+            appLayoutType = AppLayoutType.judge(prefs.getString("app_layout_type", null));
+        }
+
+        if (routine5mFuture == null && appLayoutType != null && appLayoutType.isTabletType()) {
             // データ集計用定期処理（30秒間隔でトリガーし、5分時で動作）
             // ※スマートフォン版の場合はグラフ書き込み無し
             //int timerDelay = getDelayMillisToNext5Minute();
@@ -259,7 +264,6 @@ public class BleScanTask implements Runnable {
         // 設定値の読み込み
         Resources rsrc = applicationContext.getResources();
         this.loggingBleScan = getBoolean(prefs, "logging_ble_scan", rsrc.getBoolean(R.bool.default_logging_ble_scan));
-        this.appLayoutType = AppLayoutType.judge(prefs.getString("app_layout_type", rsrc.getString(R.string.app_layout_type)));
         this.KEEP_DATA_MINUTES = getIntFromString(prefs, "keep_data_minutes", rsrc.getInteger(R.integer.default_keep_data_minutes));
 
         // Xmlセンサーリストの読み込み
