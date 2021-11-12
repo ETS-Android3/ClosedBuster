@@ -28,7 +28,7 @@
                         key="value"
                         max="4000"
                         min="400"
-                        type="text" />
+                        type="text" unit="ppm" />
                 </condition>
                 <condition
                     name="CO2濃度が閾値を下回ったら"
@@ -49,7 +49,7 @@
                         key="value"
                         max="4000"
                         min="400"
-                        type="text" />
+                        type="text" unit="ppm" />
                 </condition>
                 <condition
                     name="CO2濃度が設定範囲になったら"
@@ -70,7 +70,7 @@
                         key="value"
                         max="4000"
                         min="400"
-                        type="slider" />
+                        type="slider" unit="ppm" />
                 </condition>
                 <condition
                     name="気温が設定範囲になったら"
@@ -91,7 +91,7 @@
                         key="value"
                         max="50"
                         min="-10"
-                        type="slider" />
+                        type="slider" unit="℃" />
                 </condition>
                 <condition
                     name="湿度が設定範囲になったら"
@@ -112,7 +112,7 @@
                         key="value"
                         max="95"
                         min="0"
-                        type="slider" />
+                        type="slider" unit="%" />
                 </condition>
                 <condition
                     name="人の動きを検知したら"
@@ -120,6 +120,12 @@
                     interface="IAI"
                     key="dataname"
                     value="motion">
+                    <property
+                        name="判断"
+                        datatype="string"
+                        key="compare"
+                        type="hidden"
+                        value="equal" />
                     <property
                         name="アクション"
                         datatype="int"
@@ -134,10 +140,16 @@
                     key="dataname"
                     value="motion">
                     <property
+                        name="判断"
+                        datatype="string"
+                        key="compare"
+                        type="hidden"
+                        value="equal" />
+                    <property
                         name="アクション"
                         datatype="int"
                         type="hidden"
-                        key="action"
+                        key="value"
                         value="0" />
                 </condition>
                 <condition
@@ -159,7 +171,7 @@
                         key="value"
                         max="1100"
                         min="800"
-                        type="slider" />
+                        type="slider" unit="hPa" />
                 </condition>
             </if>
         </device>
@@ -192,7 +204,7 @@
                         key="value"
                         max="4000"
                         min="400"
-                        type="text" />
+                        type="text" unit="ppm" />
                 </condition>
                 <condition
                     name="When the co2 concentration falls below the threshold value"
@@ -213,7 +225,7 @@
                         key="value"
                         max="4000"
                         min="400"
-                        type="text" />
+                        type="text" unit="ppm" />
                 </condition>
                 <condition
                     name="When the co2 concentration is in the configuration range"
@@ -234,7 +246,7 @@
                         key="value"
                         max="4000"
                         min="400"
-                        type="slider" />
+                        type="slider" unit="ppm" />
                 </condition>
                 <condition
                     name="When the air temperature is in the configuration range"
@@ -255,7 +267,7 @@
                         key="value"
                         max="50"
                         min="-10"
-                        type="slider" />
+                        type="slider" unit="℃" />
                 </condition>
                 <condition
                     name="When the air humidity is in the configuration range"
@@ -276,7 +288,7 @@
                         key="value"
                         max="95"
                         min="0"
-                        type="slider" />
+                        type="slider" unit="%" />
                 </condition>
                 <condition
                     name="When a human motion is detected"
@@ -285,10 +297,16 @@
                     key="dataname"
                     value="motion">
                     <property
+                        name="Judgment"
+                        datatype="string"
+                        key="compare"
+                        type="hidden"
+                        value="equal" />
+                    <property
                         name="ACTION"
                         datatype="int"
                         type="hidden"
-                        key="action"
+                        key="value"
                         value="1" />
                 </condition>
                 <condition
@@ -298,9 +316,15 @@
                     key="dataname"
                     value="motion">
                     <property
+                        name="Judgment"
+                        datatype="string"
+                        key="compare"
+                        type="hidden"
+                        value="equal" />
+                    <property
                         name="ACTION"
                         datatype="int"
-                        type="action"
+                        type="hidden"
                         key="value"
                         value="0" />
                 </condition>
@@ -317,13 +341,13 @@
                         type="hidden"
                         value="between" />
                     <property
-                        name="設定範囲"
+                        name="Range"
                         datatype="int"
                         default="800,1100"
                         key="value"
                         max="1100"
                         min="800"
-                        type="slider" />
+                        type="slider" unit="hPa" />
                 </condition>
             </if>
         </device>
